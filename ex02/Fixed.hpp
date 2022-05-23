@@ -16,7 +16,7 @@
 #include <iostream>
 #include <math.h>
 
-class Fixed {
+class Fixed{
     public:
         Fixed( void );
         Fixed( const int num);

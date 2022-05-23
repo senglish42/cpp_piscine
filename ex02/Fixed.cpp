@@ -89,7 +89,6 @@ bool Fixed::operator<=(const Fixed &fixed)
 bool Fixed::operator>=(const Fixed &fixed)
 {
     return _fpnum >= fixed.getRawBits();
-
 }
 bool Fixed::operator==(const Fixed &fixed)
 {
@@ -97,7 +96,7 @@ bool Fixed::operator==(const Fixed &fixed)
 }
 bool Fixed::operator!=(const Fixed &fixed)
 {
-    return _fpnum != fixed.getRawBits();
+    return !(*this == fixed);
 }
 
 Fixed Fixed::operator=(const Fixed &fixed)
