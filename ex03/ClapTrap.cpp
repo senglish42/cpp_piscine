@@ -17,19 +17,19 @@ ClapTrap::ClapTrap() : _name("claptrap"), _hit(10), _energy(10), _damage(0)
     std::cout << "Default ClapTrap constructor is called" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hit(10), _energy(10),
-_damage(0)
+ClapTrap::ClapTrap(std::string const &name) : _name(name), _hit(10),
+_energy(10), _damage(0)
 {
     std::cout << "ClapTrap <" << _name << ">, welcome to the battle!" <<
     std::endl;
 }
 
-ClapTrap::ClapTrap( const ClapTrap &copy)
+ClapTrap::ClapTrap( const ClapTrap &copy) : _name(copy._name), _hit(copy
+._hit), _energy(copy._energy), _damage(copy._damage)
 {
     std::cout << "ClapTrap copy constructor called" << std::endl;
-    *this = copy;
 }
-ClapTrap ClapTrap::operator=(const ClapTrap &clapTrap)
+ClapTrap &ClapTrap::operator=(const ClapTrap &clapTrap)
 {
     std::cout << "ClapTrap copy assignment operator called" << std::endl;
     if (this == &clapTrap)
@@ -52,7 +52,7 @@ ClapTrap* clapTrap(const std::string &name)
     return clapTrap;
 }
 
-const std::string ClapTrap::getName()
+std::string ClapTrap::getName() const
 {
     return this->_name;
 }
@@ -117,7 +117,7 @@ void ClapTrap::keepFighting()
 {
     std::cout   << "ClapTrap <" << _name << "> has <"
                 << _hit << "> hit points and <" << _energy << "> energy points"
-                << " ,still okay to keep fighting" << std::endl;
+                << ", still okay to keep fighting" << std::endl;
 }
 
 void ClapTrap::noEnergy(bool &flag)
@@ -160,18 +160,14 @@ void ClapTrap::beRepaired(unsigned int amount){
     }
 }
 
-void ClapTrap::getRound(const ClapTrap &clapTrap)
+void ClapTrap::getRound()
 {
-    std::cout   << "Let's begin the #" << ++_round << " round" << std::endl;
     std::cout   << "ClapTrap <" << _name << "> has <" << _hit
                 << "> hit points and <" << _energy << "> energy points."
                 << std::endl;
-    std::cout   << "ClapTrap <" << clapTrap._name << "> has <" << clapTrap._hit
-                << "> hit points and <" << clapTrap._energy
-                << "> energy points." << std::endl;
 }
 
-void ClapTrap::five_boost(const std::string fragTrap)
+void ClapTrap::five_boost(const std::string &fragTrap)
 {
     _hit += 5;
     _energy += 5;

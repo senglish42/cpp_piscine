@@ -2,7 +2,8 @@ NAME	=	a.out
 
 OBJ_DIR	=	.obj
 
-SRCS	=	main.cpp	ClapTrap.cpp	ScavTrap.cpp	FragTrap.cpp
+SRCS	=	main.cpp	ClapTrap.cpp	ScavTrap.cpp	FragTrap.cpp\
+			DiamondTrap.cpp
 
 CFLAGS	=	-std=c++98 -Wall -Werror -Wextra
 
@@ -12,7 +13,7 @@ CC		=	c++
 
 RM		=	rm -rf
 
-HEADER	=	ClapTrap.hpp ScavTrap.hpp	FragTrap.hpp
+HEADER	=	ClapTrap.hpp ScavTrap.hpp	FragTrap.hpp DiamondTrap.hpp
 
 $(OBJ_DIR)/%.o:%.cpp $(HEADER)
 	mkdir -p $(OBJ_DIR)

@@ -17,30 +17,29 @@
 
 class ScavTrap : virtual public ClapTrap{
     public:
-        ScavTrap(const std::string &name);
+        explicit ScavTrap(const std::string &name);
         ScavTrap( const ScavTrap &copy);
-        ScavTrap operator=(const ScavTrap &scavTrap);
-        ~ScavTrap( void );
-        const std::string   getName( void );
-        void                guardGate( void );
-        void                getRound( void );
-        int                 getDamage( void );
-        int                 getHit( void );
-        int                 getEnergy( void );
-        void                noEnergy( void );
-        void                noHit( void );
-        void                keepFighting( void );
-        void                five_attack(std::string fragTrap);
-        void                takeDamage(unsigned int amount);
-        void                beRepaired(unsigned int amount);
-        void                attack(const std::string& target);
+        ScavTrap &operator=(const ScavTrap &scavTrap);
+        virtual ~ScavTrap();
+        virtual std::string         getName() const;
+        virtual void                guardGate();
+        virtual void                getRound();
+        virtual int                 getDamage();
+        virtual int                 getHit();
+        virtual int                 getEnergy();
+        virtual void                noEnergy();
+        virtual void                noHit();
+        virtual void                keepFighting();
+        virtual void                five_attack(const std::string &fragTrap);
+        virtual void                takeDamage(unsigned int amount);
+        virtual void                beRepaired(unsigned int amount);
+        virtual void                attack(const std::string& target);
     protected:
-        std::string _name;
-        int         _hit;
-        int         _energy;
-        int         _damage;
-    private:
-        ScavTrap( void );
+        std::string                 _name;
+        int                         _hit;
+        int                         _energy;
+        int                         _damage;
+        ScavTrap();
 };
 
 #endif

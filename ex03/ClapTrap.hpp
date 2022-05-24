@@ -18,28 +18,29 @@
 
 class ClapTrap {
     public:
-        ClapTrap(const std::string &name);
+        explicit ClapTrap(const std::string &name);
         ClapTrap( const ClapTrap &copy);
-        ClapTrap operator=(const ClapTrap &clapTrap);
-        ~ClapTrap( void );
-        const std::string   getName();
-        int                 getDamage();
-        int                 getHit();
-        int                 getEnergy();
-        void                noEnergy();
-        void                noHit();
-        void                winner(const ClapTrap &clapTrap);
-        void                keepFighting();
-        void                attack(const std::string& target);
-        void                takeDamage(unsigned int amount);
-        void                beRepaired(unsigned int amount);
-        void                getRound(const ClapTrap &clapTrap);
-    private:
-        std::string         _name;
-        int                 _hit;
-        int                 _energy;
-        int                 _damage;
-        static int          _round;
+        ClapTrap &operator=(const ClapTrap &clapTrap);
+        virtual ~ClapTrap();
+        virtual std::string         getName() const;
+        virtual int                 getDamage();
+        virtual int                 getHit();
+        virtual int                 getEnergy();
+        virtual void                noEnergy(bool &flag);
+        virtual void                noHit(bool &flag);
+        virtual void                keepFighting();
+        virtual void                attack(const std::string& target);
+        virtual void                takeDamage(unsigned int amount);
+        virtual void                beRepaired(unsigned int amount);
+        virtual void                getRound();
+        void                        five_boost(const std::string &fragTrap);
+        static int                  _round;
+    protected:
+        std::string                 _name;
+        int                         _hit;
+        int                         _energy;
+        int                         _damage;
+        ClapTrap();
 };
 
 ClapTrap *clapTrap(const std::string &name);

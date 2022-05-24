@@ -12,7 +12,8 @@
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hit(10), _energy(10),
+ClapTrap::ClapTrap(const std::string &name) : _name(name), _hit(10), _energy
+(10),
 _damage(0)
 {
     std::cout << "<" << _name << ">, welcome to the battle!" << std::endl;
@@ -40,7 +41,7 @@ ClapTrap::~ClapTrap()
     std::cout << "<" << _name << "> left the area." << std::endl;
 }
 
-ClapTrap* clapTrap( std::string name )
+ClapTrap* clapTrap(const std::string &name )
 {
     ClapTrap *clapTrap = new ClapTrap(name);
     return clapTrap;

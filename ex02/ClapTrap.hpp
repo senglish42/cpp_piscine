@@ -43,6 +43,6 @@ class ClapTrap {
         ClapTrap( void );
 };
 
-ClapTrap *clapTrap(std::string name);
+ClapTrap *clapTrap(const std::string &name);
 
 #endif

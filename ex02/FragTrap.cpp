@@ -13,7 +13,11 @@
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap() {};
+FragTrap::FragTrap() : ClapTrap(), _name("fragtrap"), _hit(100),
+_energy(100), _damage(30)
+{
+    std::cout << "Default FragTrap constructor is called" << std::endl;
+}
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name), _name(name), _hit(100),
 _energy(100), _damage(30)
@@ -22,9 +26,10 @@ _energy(100), _damage(30)
                 << std::endl;
 }
 
-FragTrap::FragTrap( const FragTrap &copy) : ClapTrap(copy)
+FragTrap::FragTrap( const FragTrap &copy) : ClapTrap(copy._name)
 {
     std::cout << "FragTrap copy constructor called" << std::endl;
+    *this = copy;
 }
 
 FragTrap FragTrap::operator=(const FragTrap &FragTrap)

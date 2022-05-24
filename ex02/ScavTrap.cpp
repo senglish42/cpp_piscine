@@ -12,18 +12,24 @@
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() {};
+ScavTrap::ScavTrap() : ClapTrap(), _name("scavtrap"), _hit(100), _energy(50),
+_damage(20)
+{
+    std::cout << "Default ScavTrap constructor is called" << std::endl;
+}
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name), _name(name), _hit(100),
+ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name), _name(name), _hit
+(100),
 _energy(50), _damage(20)
 {
     std::cout   << "Here is ScavTrap called <" << _name << ">. Welcome!"
                 << std::endl;
 }
 
-ScavTrap::ScavTrap( const ScavTrap &copy) : ClapTrap(copy)
+ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy._name)
 {
     std::cout << "ScavTrap copy constructor called" << std::endl;
+    *this = copy;
 }
 
 ScavTrap ScavTrap::operator=(const ScavTrap &scavTrap)
@@ -56,7 +62,7 @@ void ScavTrap::getRound() {
 void ScavTrap::takeDamage(unsigned int amount)
 {
     _hit -= amount;
-    std::cout   << "ClapTrap <" << _name << "> takes <"
+    std::cout   << "ScavTrap <" << _name << "> takes <"
                 << amount << "> points of damage";
     std::cout   << std::endl;
 }
@@ -65,18 +71,18 @@ void ScavTrap::keepFighting()
 {
     std::cout   << "ScavTrap <" << _name << "> has <"
                 << _hit << "> hit points and <" << _energy << "> energy points"
-                << " ,still okay to keep fighting" << std::endl;
+                << ", still okay to keep fighting" << std::endl;
 }
 
 void ScavTrap::noEnergy()
 {
-    std::cout << "ClapTrap <" << _name << "> has no energy "
+    std::cout << "ScavTrap <" << _name << "> has no energy "
               << "to be recovered" << std::endl;
 }
 
 void ScavTrap::noHit()
 {
-    std::cout   << "ClapTrap <" << _name << "> doesn't have hit points to "
+    std::cout   << "ScavTrap <" << _name << "> doesn't have hit points to "
                 << "continue battle." << std::endl;
 }
 
@@ -104,7 +110,7 @@ void ScavTrap::beRepaired(unsigned int amount){
         _hit += hit;
         _energy -= energy;
         std::cout   << "ClapTrap <" << _name << "> spent <"
-                    << energy << " energy points to get <"
+                    << energy << "> energy points to get <"
                     << hit << "> hit points" <<  std::endl;
     }
 }

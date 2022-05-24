@@ -18,20 +18,20 @@ _damage(20)
     std::cout << "Default ScavTrap constructor is called" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name), _name(name), _hit(100),
-_energy(50), _damage(20)
+ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name), _name(name), _hit
+(100),_energy(50), _damage(20)
 {
     std::cout   << "Here is ScavTrap called <" << _name << ">. Welcome!"
                 << std::endl;
 }
 
-ScavTrap::ScavTrap( const ScavTrap &copy) : ClapTrap(copy._name)
+ScavTrap::ScavTrap( const ScavTrap &copy) : ClapTrap(copy._name), _name(copy
+._name), _hit(copy._hit), _energy(copy._energy), _damage(copy._damage)
 {
     std::cout << "ScavTrap copy constructor called" << std::endl;
-    *this = copy;
 }
 
-ScavTrap ScavTrap::operator=(const ScavTrap &scavTrap)
+ScavTrap &ScavTrap::operator=(const ScavTrap &scavTrap)
 {
     std::cout << "ScavTrap copy assignment operator called" << std::endl;
     if (this == &scavTrap)
@@ -61,27 +61,27 @@ void ScavTrap::getRound() {
 void ScavTrap::takeDamage(unsigned int amount)
 {
     _hit -= amount;
-    std::cout   << "ClapTrap <" << _name << "> takes <"
+    std::cout   << "ScavTrap <" << _name << "> takes <"
                 << amount << "> points of damage";
     std::cout   << std::endl;
 }
 
 void ScavTrap::keepFighting()
 {
-    std::cout   << "ClapTrap <" << _name << "> has <"
+    std::cout   << "ScavTrap <" << _name << "> has <"
                 << _hit << "> hit points and <" << _energy << "> energy points"
-                << " ,still okay to keep fighting" << std::endl;
+                << ", still okay to keep fighting" << std::endl;
 }
 
 void ScavTrap::noEnergy()
 {
-    std::cout << "ClapTrap <" << _name << "> has no energy "
+    std::cout << "ScavTrap <" << _name << "> has no energy "
               << "to be recovered" << std::endl;
 }
 
 void ScavTrap::noHit()
 {
-    std::cout   << "ClapTrap <" << _name << "> doesn't have hit points to "
+    std::cout   << "ScavTrap <" << _name << "> doesn't have hit points to "
                 << "continue battle." << std::endl;
 }
 
@@ -94,9 +94,9 @@ void ScavTrap::beRepaired(unsigned int amount){
     {
         if (_hit <= 0 || _energy <= 0)
         {
- //           _energy = 0;
-            std::cout   << "ClapTrap <" << _name << "> lost all hit points"
-                        <<  std::endl;
+            if (_hit <= 0)
+                std::cout   << "ScavTrap <" << _name << "> lost all hit points"
+                            <<  std::endl;
             return ;
         }
         int hit, energy;
@@ -108,8 +108,8 @@ void ScavTrap::beRepaired(unsigned int amount){
         energy = rand() % energy + 1;
         _hit += hit;
         _energy -= energy;
-        std::cout   << "ClapTrap <" << _name << "> spent <"
-                    << energy << " energy points to get <"
+        std::cout   << "ScavTrap <" << _name << "> spent <"
+                    << energy << "> energy points to get <"
                     << hit << "> hit points" <<  std::endl;
     }
 }
@@ -150,7 +150,14 @@ int ScavTrap::getDamage()
     return damage;
 }
 
-const std::string ScavTrap::getName()
+std::string ScavTrap::getName() const
 {
     return this->_name;
+}
+
+void ScavTrap::five_attack(const std::string &fragTrap)
+{
+    _hit -= 5;
+    std::cout   << "ScavTrap <" << _name << "> loses its 5 hit points cause of "
+                << "FragTrap <" << fragTrap << "> attack." << std::endl;
 }

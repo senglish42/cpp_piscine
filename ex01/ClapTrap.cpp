@@ -12,8 +12,9 @@
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() {
-    ;
+ClapTrap::ClapTrap() : _name("claptrap"), _hit(10), _energy(10), _damage(0)
+{
+    std::cout << "Default ClapTrap constructor is called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hit(10), _energy(10),
@@ -23,10 +24,10 @@ _damage(0)
     std::endl;
 }
 
-ClapTrap::ClapTrap( const ClapTrap &copy) : _name(copy._name), _hit(copy._hit),
-_energy(copy._energy), _damage(copy._damage)
+ClapTrap::ClapTrap( const ClapTrap &copy)
 {
     std::cout << "ClapTrap copy constructor called" << std::endl;
+    *this = copy;
 }
 ClapTrap ClapTrap::operator=(const ClapTrap &clapTrap)
 {
@@ -45,7 +46,7 @@ ClapTrap::~ClapTrap()
     std::cout << "ClapTrap <" << _name << "> left the area." << std::endl;
 }
 
-ClapTrap* clapTrap( std::string name )
+ClapTrap* clapTrap(const std::string &name)
 {
     ClapTrap *clapTrap = new ClapTrap(name);
     return clapTrap;
