@@ -33,8 +33,8 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat)
 }
 
 Bureaucrat::~Bureaucrat() {
-//    std::cout   << "Bye, bureaucrat " << _name << ". We'll miss you :("
-//                << std::endl;
+    std::cout   << "Bye, bureaucrat " << _name << ". We'll miss you :("
+                << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &copy, const std::string &name) :

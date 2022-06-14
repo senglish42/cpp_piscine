@@ -18,7 +18,9 @@
 #include <exception>
 #include <sstream>
 #include <stdexcept>
+#include "Form.hpp"
 
+class Form;
 class Bureaucrat
 {
     public:
@@ -26,13 +28,13 @@ class Bureaucrat
         Bureaucrat(const Bureaucrat &copy);
         Bureaucrat(const Bureaucrat &copy, const std::string &name);
         Bureaucrat &operator=(const Bureaucrat &bureaucrat);
+        Bureaucrat &operator++();
+        Bureaucrat &operator--();
+        const Bureaucrat operator++(int);
+        const Bureaucrat operator--(int);
         ~Bureaucrat();
         const std::string   &getName() const;
         int                 getValue() const;
-        Bureaucrat& operator++();
-        Bureaucrat& operator--();
-        const Bureaucrat operator++(int);
-        const Bureaucrat operator--(int);
         class GradeTooHighException : public std::exception
         {
             public:
@@ -49,7 +51,9 @@ class Bureaucrat
             private:
                 const char* _err;
         };
-        void checkException() throw (GradeTooLowException, GradeTooHighException);
+        void checkException() throw (GradeTooLowException,
+                                    GradeTooHighException);
+        void executeForm(Form &form) const;
     private:
         const std::string   _name;
         int                 _grade;
@@ -58,7 +62,6 @@ class Bureaucrat
 };
 
 static std::string exc;
-
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat);
 
 #endif

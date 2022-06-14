@@ -11,23 +11,29 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
+#include <fstream>
+
 
 int main()
 {
     try
     {
-        Bureaucrat bb("bb", 150);
+        Bureaucrat bb("Vasiliy", 30);
         std::cout << bb.getName() << std::endl;
         std::cout << bb.getValue() << std::endl;
-        Bureaucrat aa(bb, "_temp");
-        std::cout << aa << std::endl;
-        std::cout << aa-- << std::endl;
+        Form f("'Very important'", 60, 40);
+        std::cout << f.getName() << " " << f.getExecValue() << std::endl;
+        std::cout << bb-- << std::endl;
         std::cout << bb << std::endl;
+        f.beSigned(bb);
+        f.signForm(bb);
     }
-    catch (const std::exception& exc)
+    catch (const std::exception &exc)
     {
-        std::cout << exc.what() << ". Caught a runtime_error!" << std::endl;
+        std::cerr << exc.what() << ". Caught a runtime_error!" << std::endl;
     }
+    std::cout << ".........................." << std::endl;
     Bureaucrat *borya;
     try
     {
@@ -40,10 +46,9 @@ int main()
         std::cout << *borya << std::endl;
         delete borya;
     }
-    catch (const std::exception& exc)
+    catch (const std::exception &exc)
     {
-        std::cerr << exc.what() << ". Caught a runtime_error!" <<
-        std::endl;
+        std::cerr << exc.what() << ". Caught a runtime_error!" << std::endl;
     }
     return 0;
 }

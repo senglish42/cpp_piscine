@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: senglish <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 09:26:00 by senglish          #+#    #+#             */
-/*   Updated: 2022/05/26 09:26:00 by senglish         ###   ########.fr       */
+/*   Created: 2022/05/28 15:43:00 by senglish          #+#    #+#             */
+/*   Updated: 2022/05/28 15:43:00 by senglish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#ifndef FORM_HPP
+# define FORM_HPP
 
 #include <iostream>
 #include <exception>
 #include <sstream>
 #include <stdexcept>
+#include "Bureaucrat.hpp"
 
-class Bureaucrat
+class Form
 {
     public:
-        Bureaucrat(const std::string &name, int grade);
-        Bureaucrat(const Bureaucrat &copy);
-        Bureaucrat(const Bureaucrat &copy, const std::string &name);
-        Bureaucrat &operator=(const Bureaucrat &bureaucrat);
-        ~Bureaucrat();
+        Form(const std::string &name, const int &sign, const int &execute);
+        Form(const Form &copy);
+        Form(const Form &copy, const std::string &name);
+        Form &operator=(const Form &form);
+        ~Form();
         const std::string   &getName() const;
-        int                 getValue() const;
-        Bureaucrat& operator++();
-        Bureaucrat& operator--();
-        const Bureaucrat operator++(int);
-        const Bureaucrat operator--(int);
+        int                 getExecValue() const;
+        int                 getSignValue() const;
+        void                beSigned(Bureaucrat &name);
+        void                signForm(Bureaucrat &name) const;
         class GradeTooHighException : public std::exception
         {
             public:
@@ -49,16 +48,16 @@ class Bureaucrat
             private:
                 const char* _err;
         };
-        void checkException() throw (GradeTooLowException, GradeTooHighException);
+        void checkException() throw (GradeTooLowException,
+                                    GradeTooHighException);
     private:
         const std::string   _name;
-        int                 _grade;
-        std::string         _err;
-        Bureaucrat() : _grade(150) {}
+        bool                _status;
+        const int           _sign;
+        const int           _execute;
+        Form();
 };
 
-static std::string exc;
-
-std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat);
+std::ostream &operator<<(std::ostream &out, const Form &form);
 
 #endif
