@@ -19,14 +19,17 @@
 class ShrubberyCreationForm : public Form
 {
     public:
-        explicit ShrubberyCreationForm(const std::string &target);
+        ShrubberyCreationForm(const std::string &name,
+                              const std::string &target);
         ShrubberyCreationForm(const ShrubberyCreationForm &copy);
         ShrubberyCreationForm &operator=(const ShrubberyCreationForm &form);
         virtual ~ShrubberyCreationForm();
         virtual void        execute(Bureaucrat const &executor) const;
+        const std::string   &getTarget() const;
     private:
-        void                create_shrubbery() const;
         ShrubberyCreationForm();
+        void    create_shrubbery() const;
+        const   std::string _target;
 };
 
 #endif

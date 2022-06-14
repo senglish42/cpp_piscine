@@ -18,13 +18,16 @@
 class PresidentalPardonForm : public Form
 {
     public:
-        explicit PresidentalPardonForm(const std::string &target);
+        explicit PresidentalPardonForm(const std::string &name,
+                                       const std::string &target);
         PresidentalPardonForm(const PresidentalPardonForm &copy);
         PresidentalPardonForm &operator=(const PresidentalPardonForm &form);
         virtual ~PresidentalPardonForm();
         virtual void        execute(Bureaucrat const & executor) const;
+        const std::string   &getTarget() const;
     private:
         PresidentalPardonForm();
+        const std::string _target;
 };
 
 #endif

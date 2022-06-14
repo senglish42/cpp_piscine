@@ -21,7 +21,7 @@ int main()
         Bureaucrat bb("Vasiliy", 136);
         std::cout << bb.getName() << std::endl;
         std::cout << bb.getValue() << std::endl;
-        ShrubberyCreationForm Declaration("Gorgeous");
+        ShrubberyCreationForm Declaration("Refinement", "5th district");
         Declaration.Form::beSigned(bb);
         Declaration.Form::signForm(bb);
         bb.executeForm(Declaration);
@@ -36,14 +36,14 @@ int main()
     Bureaucrat *borya;
     try
     {
-        borya = new Bureaucrat("Borya", 60);
+        borya = new Bureaucrat("Borya", 30);
         std::cout << borya->getName() << std::endl;
         std::cout << borya->getValue() << std::endl;
         std::cout << *borya << std::endl;
         Bureaucrat cc(*borya, "_temp");
         std::cout << cc++ << std::endl;
         std::cout << *borya << std::endl;
-        RobotomyRequestForm Rob("Robotomy");
+        RobotomyRequestForm Rob("Robotomy", "Little Puppy");
         Rob.Form::beSigned(*borya);
         Rob.Form::signForm(*borya);
         borya->executeForm(Rob);
@@ -60,7 +60,7 @@ int main()
         Bureaucrat stuff("George", 1);
         std::cout << stuff.getName() << std::endl;
         std::cout << stuff.getValue() << std::endl;
-        PresidentalPardonForm President("Audience");
+        PresidentalPardonForm President("Audience", "Bob Dylan");
         President.Form::beSigned(stuff);
         President.Form::signForm(stuff);
         stuff.executeForm(President);

@@ -12,10 +12,11 @@
 
 #include "PresidentialPardonForm.hpp"
 
-PresidentalPardonForm::PresidentalPardonForm(const std::string &target) :
-Form(target, 25, 5) {}
+PresidentalPardonForm::PresidentalPardonForm(const std::string &name, const
+std::string &target) : Form(name, 25, 5), _target(target) {}
 
-PresidentalPardonForm::PresidentalPardonForm() : Form("form", 25, 5) {}
+PresidentalPardonForm::PresidentalPardonForm()
+: Form("form", 25, 5), _target("target") {}
 
 PresidentalPardonForm::~PresidentalPardonForm()
 {
@@ -23,7 +24,7 @@ PresidentalPardonForm::~PresidentalPardonForm()
 }
 
 PresidentalPardonForm::PresidentalPardonForm(const PresidentalPardonForm & rhs)
-: Form(rhs.getName(), 25, 5)
+: Form(rhs.getName(), 25, 5), _target(rhs.getTarget())
 {
     *this = rhs;
 }
@@ -34,9 +35,14 @@ PresidentalPardonForm & PresidentalPardonForm::operator=(const PresidentalPardon
     return *this;
 }
 
+const std::string &PresidentalPardonForm::getTarget() const
+{
+    return this->_target;
+}
+
 void PresidentalPardonForm::execute(const Bureaucrat &executor) const
 {
     Form::checkExecution(executor);
-    std::cout   << Form::getName() << " has been pardoned by Zaphod Beeblebrox."
+    std::cout   << _target << " has been pardoned by Zaphod Beeblebrox."
                 << std::endl;
 }
