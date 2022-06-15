@@ -126,7 +126,7 @@ const char* Form::GradeTooHighException::what() const throw()
     return (_err);
 }
 
-Form::UnableToBeExecuted::UnableToBeExecuted(const char *err) : _err(err){}
+Form::UnableToBeExecuted::UnableToBeExecuted(const char *err) : _err(err) {}
 
 const char* Form::UnableToBeExecuted::what() const throw()
 {

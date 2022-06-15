@@ -32,6 +32,7 @@ Form::Form(const Form &copy) : _name(copy._name), _status(copy._status), _sign
 (copy._sign), _execute(copy._execute)
 {
     std::cout << "Copy constructor called" << std::endl;
+    *this = copy;
 }
 
 Form &Form::operator=(const Form &form)

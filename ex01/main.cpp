@@ -45,9 +45,12 @@ int main()
         std::cout << cc++ << std::endl;
         std::cout << *borya << std::endl;
         delete borya;
+        borya = NULL;
     }
     catch (const std::exception &exc)
     {
+        delete borya;
+        borya = NULL;
         std::cerr << exc.what() << ". Caught a runtime_error!" << std::endl;
     }
     return 0;
