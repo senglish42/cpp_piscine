@@ -49,11 +49,11 @@ cmake_ninja_workdir = /home/senglish/CLionProjects/cpp08/cmake-build-debug/
 
 build cmake_object_order_depends_target_cpp08: phony || CMakeFiles/cpp08.dir
 
-build CMakeFiles/cpp08.dir/ex00/main.cpp.o: CXX_COMPILER__cpp08_Debug /home/senglish/CLionProjects/cpp08/ex00/main.cpp || cmake_object_order_depends_target_cpp08
-  DEP_FILE = CMakeFiles/cpp08.dir/ex00/main.cpp.o.d
+build CMakeFiles/cpp08.dir/ex02/main.cpp.o: CXX_COMPILER__cpp08_Debug /home/senglish/CLionProjects/cpp08/ex02/main.cpp || cmake_object_order_depends_target_cpp08
+  DEP_FILE = CMakeFiles/cpp08.dir/ex02/main.cpp.o.d
   FLAGS = -g -std=gnu++98
   OBJECT_DIR = CMakeFiles/cpp08.dir
-  OBJECT_FILE_DIR = CMakeFiles/cpp08.dir/ex00
+  OBJECT_FILE_DIR = CMakeFiles/cpp08.dir/ex02
 
 
 # =============================================================================
@@ -63,7 +63,7 @@ build CMakeFiles/cpp08.dir/ex00/main.cpp.o: CXX_COMPILER__cpp08_Debug /home/seng
 #############################################
 # Link the executable cpp08
 
-build cpp08: CXX_EXECUTABLE_LINKER__cpp08_Debug CMakeFiles/cpp08.dir/ex00/main.cpp.o
+build cpp08: CXX_EXECUTABLE_LINKER__cpp08_Debug CMakeFiles/cpp08.dir/ex02/main.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/cpp08.dir
   POST_BUILD = :
