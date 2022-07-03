@@ -5,12 +5,12 @@
 
 class PhoneBook {
     public:
-    PhoneBook( void );
-    ~PhoneBook( void );
-    void to_send(Contact contact, int num);
-    void to_search(int num);
+        PhoneBook( void );
+        ~PhoneBook( void );
+        void to_send(Contact contact, int num);
+        void to_search(int num);
     private:
-    Contact contact_[8];
+        Contact contact_[8];
 };
 
 #endif

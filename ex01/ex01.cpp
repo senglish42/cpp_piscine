@@ -31,10 +31,14 @@ void    questions_answers(int count, std::string &gnl)
     getline(std::cin, gnl);
 }
 
-void    to_add(std::string &gnl, int &num, PhoneBook &phonebook, Contact
-&contact)
+void    to_add(std::string &gnl, int &num, PhoneBook &phonebook)
 {
     std::string info[5];
+    std::string &name = info[0];
+    std::string &surname = info[1];
+    std::string &nickname = info[2];
+    std::string &phone = info[3];
+    std::string &secret = info[4];
 
     for (int count = 0; count < 5; count++)
     {
@@ -53,8 +57,8 @@ void    to_add(std::string &gnl, int &num, PhoneBook &phonebook, Contact
         if (count == 4)
         {
             num++;
-            contact.SetInfo(info);
-            phonebook.to_send(contact, num);
+            phonebook.to_send(Contact(name, surname, nickname, phone,
+                                      secret), num);
             break ;
         }
     }
@@ -63,8 +67,7 @@ void    to_add(std::string &gnl, int &num, PhoneBook &phonebook, Contact
 int main()
 {
     PhoneBook   phonebook;
-    Contact     contact;
-    std::string      gnl;
+    std::string gnl;
     int         num;
 
     num = 0;
@@ -72,7 +75,7 @@ int main()
     {
         getline(std::cin, gnl);
         while (gnl == "ADD")
-            to_add(gnl, num, phonebook, contact);
+            to_add(gnl, num, phonebook);
         if (gnl == "SEARCH")
             phonebook.to_search(num);
         if (gnl == "EXIT")

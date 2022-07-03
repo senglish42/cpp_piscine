@@ -14,9 +14,7 @@
 #include <iomanip>
 #include "ClassPhoneBook.hpp"
 
-PhoneBook::PhoneBook() {
-    return ;
-}
+PhoneBook::PhoneBook() {}
 
 PhoneBook::~PhoneBook() {
     return ;
