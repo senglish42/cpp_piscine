@@ -12,26 +12,25 @@
 
 #include "Fixed.hpp"
 
-Fixed::Fixed( void ) : _fpnum(0)
+Fixed::Fixed() : _fpnum(0)
 {
     //std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::~Fixed( void )
+Fixed::~Fixed()
 {
 //    std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed( const int num)
+Fixed::Fixed(const int& num) : _fpnum(num << bits)
 {
 //    std::cout << "Int constructor called" << std::endl;
-    _fpnum = num << bits;
 }
 
-Fixed::Fixed( const float fnum)
+Fixed::Fixed(const float& fnum)
 {
 //    std::cout << "Float constructor called" << std::endl;
-    _fpnum = static_cast<int>(roundf(fnum * Fixed::convert_bits(bits)));
+    _fpnum = static_cast<int>(roundf(fnum * (1 << bits)));
 }
 
 Fixed::Fixed(const Fixed &copy)
@@ -45,61 +44,49 @@ void Fixed::setRawBits( int const raw )
     _fpnum = raw;
 }
 
-int Fixed::getRawBits( void ) const
+int Fixed::getRawBits() const
 {
     return _fpnum;
 }
 
-int Fixed::convert_bits(const int bits)
-{
-    int value;
-
-    value = 1;
-    if (bits == 0)
-        return 1;
-    for (int num = 0; num < bits; num++)
-        value = value * 2;
-    return value;
-}
-
-int Fixed::toInt( void ) const
+int Fixed::toInt() const
 {
     return _fpnum >> bits;
 }
 
-float Fixed::toFloat( void ) const
+float Fixed::toFloat() const
 {
-    return  static_cast<float>(_fpnum) / Fixed::convert_bits(bits);
+    return  static_cast<float>(_fpnum) / (1 << 8);
 }
 
-bool Fixed::operator>(const Fixed &fixed)
+bool Fixed::operator>(const Fixed &fixed) const
 {
     return _fpnum > fixed.getRawBits();
 }
 
-bool Fixed::operator<(const Fixed &fixed)
+bool Fixed::operator<(const Fixed &fixed) const
 {
     return _fpnum < fixed.getRawBits();
 }
 
-bool Fixed::operator<=(const Fixed &fixed)
+bool Fixed::operator<=(const Fixed &fixed) const
 {
     return _fpnum <= fixed.getRawBits();
 }
-bool Fixed::operator>=(const Fixed &fixed)
+bool Fixed::operator>=(const Fixed &fixed) const
 {
     return _fpnum >= fixed.getRawBits();
 }
-bool Fixed::operator==(const Fixed &fixed)
+bool Fixed::operator==(const Fixed &fixed) const
 {
     return _fpnum == fixed.getRawBits();
 }
-bool Fixed::operator!=(const Fixed &fixed)
+bool Fixed::operator!=(const Fixed &fixed) const
 {
     return !(*this == fixed);
 }
 
-Fixed Fixed::operator=(const Fixed &fixed)
+Fixed& Fixed::operator=(const Fixed &fixed)
 {
 //    std::cout << "Copy assignment operator called" << std::endl;
     if (this == &fixed)
@@ -108,22 +95,22 @@ Fixed Fixed::operator=(const Fixed &fixed)
     return *this;
 }
 
-Fixed Fixed::operator+(const Fixed &fixed)
+Fixed Fixed::operator+(const Fixed &fixed) const
 {
     return Fixed(toFloat() + fixed.toFloat());
 }
 
-Fixed Fixed::operator-(const Fixed &fixed)
+Fixed Fixed::operator-(const Fixed &fixed) const
 {
     return Fixed(toFloat() - fixed.toFloat());
 }
 
-Fixed Fixed::operator*(const Fixed &fixed)
+Fixed Fixed::operator*(const Fixed &fixed) const
 {
     return Fixed(toFloat() * fixed.toFloat());
 }
 
-Fixed Fixed::operator/(const Fixed &fixed)
+Fixed Fixed::operator/(const Fixed &fixed) const
 {
     return Fixed(toFloat() / fixed.toFloat());
 }

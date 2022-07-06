@@ -14,22 +14,21 @@
 # define FIXED_HPP
 
 #include <iostream>
-#include <math.h>
+#include <cmath>
 
 class Fixed {
     public:
-        Fixed( void );
-        Fixed( const int num);
-        Fixed( const float fnum);
+        Fixed();
+        Fixed( const int &num);
+        Fixed( const float &fnum);
         Fixed( const Fixed &copy);
-        Fixed operator=(const Fixed &fixed);
-        float toFloat( void ) const;
-        int toInt( void ) const;
-        ~Fixed( void );
-        int getRawBits( void ) const;
-        void setRawBits( int const raw );
+        Fixed& operator=(const Fixed &fixed);
+        float toFloat() const;
+        int toInt() const;
+        ~Fixed();
+        int getRawBits() const;
+        void setRawBits(int const raw);
     private:
-        static int convert_bits(const int bits);
         int _fpnum;
         static const int bits = 8;
 };

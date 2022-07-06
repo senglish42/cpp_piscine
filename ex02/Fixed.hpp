@@ -14,30 +14,30 @@
 # define FIXED_HPP
 
 #include <iostream>
-#include <math.h>
+#include <cmath>
 
 class Fixed{
     public:
-        Fixed( void );
-        Fixed( const int num);
-        Fixed( const float fnum);
+        Fixed();
+        explicit Fixed(const int& num);
+        explicit Fixed(const float& fnum);
         Fixed( const Fixed &copy);
-        ~Fixed( void );
-        float toFloat( void ) const;
-        int toInt( void ) const;
-        int getRawBits( void ) const;
-        void setRawBits( int const raw );
-        bool operator>(const Fixed &fixed);
-        bool operator<(const Fixed &fixed);
-        bool operator<=(const Fixed &fixed);
-        bool operator>=(const Fixed &fixed);
-        bool operator==(const Fixed &fixed);
-        bool operator!=(const Fixed &fixed);
-        Fixed operator=(const Fixed &fixed);
-        Fixed operator+(const Fixed &fixed);
-        Fixed operator-(const Fixed &fixed);
-        Fixed operator*(const Fixed &fixed);
-        Fixed operator/(const Fixed &fixed);
+        ~Fixed();
+        float toFloat() const;
+        int toInt() const;
+        int getRawBits() const;
+        void setRawBits(int const raw);
+        bool operator>(const Fixed &fixed) const;
+        bool operator<(const Fixed &fixed) const;
+        bool operator<=(const Fixed &fixed) const;
+        bool operator>=(const Fixed &fixed) const;
+        bool operator==(const Fixed &fixed) const;
+        bool operator!=(const Fixed &fixed) const;
+        Fixed& operator=(const Fixed &fixed);
+        Fixed operator+(const Fixed &fixed) const;
+        Fixed operator-(const Fixed &fixed) const;
+        Fixed operator*(const Fixed &fixed) const;
+        Fixed operator/(const Fixed &fixed) const;
         Fixed& operator++();
         Fixed& operator--();
         Fixed operator++(int);
@@ -46,8 +46,7 @@ class Fixed{
         static Fixed &max(Fixed &a, Fixed &b);
         static const Fixed &min(const Fixed &a, const Fixed &b);
         static const Fixed &max(const Fixed &a, const Fixed &b);
-private:
-        static int convert_bits(const int bits);
+    private:
         int _fpnum;
         static const int bits = 8;
 };
