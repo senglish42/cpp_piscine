@@ -14,9 +14,9 @@
 
 HumanB::HumanB(const std::string name) : _name(name) {
     _weapon = NULL;
-};
+}
 
-HumanB::~HumanB() {} ;
+HumanB::~HumanB() {}
 
 void HumanB::attack()
 {

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <iostream>
-#include <cstdlib>
 #include "Zombie.hpp"
 
 void randomChump( std::string name )
