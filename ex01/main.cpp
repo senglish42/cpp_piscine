@@ -18,6 +18,8 @@ int main(void)
 
     Zombie *zombie;
     zombie = zombieHorde(100, name);
+    std::cout   << "FIRST ZOMBIE: #" << zombie->getIndex() << " "
+                << zombie->getName() << std::endl;
     delete [] zombie;
     return 0;
 }

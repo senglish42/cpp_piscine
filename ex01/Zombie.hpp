@@ -14,15 +14,18 @@
 
 #include <iostream>
 
-class Zombie {
-
+class Zombie
+{
     public:
-    Zombie( void );
-    ~Zombie( void );
-    void set_name( const std::string name, int N );
+        Zombie();
+        ~Zombie();
+        void set_name( std::string name, int N );
+        const std::string& getName() const;
+        int getIndex() const;
+        void announce() const;
     private:
-    std::string _name;
-    int         _num;
+        std::string _name;
+        int         _num;
 };
 
 Zombie* zombieHorde( int N, std::string &name );

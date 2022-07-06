@@ -31,6 +31,7 @@ Zombie* zombieHorde( int N, std::string &name )
         else
             name = "Daryl";
         zombie[i].set_name(name, i);
+        zombie[i].announce();
     }
     return zombie;
 }

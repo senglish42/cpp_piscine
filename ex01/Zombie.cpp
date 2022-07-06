@@ -12,9 +12,7 @@
 
 #include "Zombie.hpp"
 
-Zombie::Zombie()
-{
-}
+Zombie::Zombie() {}
 
 Zombie::~Zombie()
 {
@@ -28,4 +26,19 @@ void Zombie::set_name( const std::string name, int N)
     Zombie::_num = N;
     std::cout   << "Zombie #" << Zombie::_num << " " << Zombie::_name
                 << " wants to eat your BraiiiiiiinnnzzzZ..." << std::endl;
+}
+
+const std::string& Zombie::getName() const
+{
+    return this->_name;
+}
+
+int Zombie::getIndex() const
+{
+    return this->_num;
+}
+
+void Zombie::announce() const
+{
+    std::cout << Zombie::_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

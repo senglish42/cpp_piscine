@@ -17,9 +17,9 @@ Harl::Harl() {
     _message[1] = &Harl::info;
     _message[2] = &Harl::warning;
     _message[3] = &Harl::error;
-};
+}
 
-Harl::~Harl() {};
+Harl::~Harl() {}
 
 void Harl::complain(std::string level) {
     std::string message[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
@@ -39,7 +39,7 @@ void Harl::debug() {
                    "7XL-double-cheese-triple-pickle-special-"
                    "ketchup burger. I really do!"
                 << std::endl;
-};
+}
 
 void Harl::error() {
     std::cout   << "[ ERROR ]" << std::endl
@@ -47,13 +47,13 @@ void Harl::error() {
                    "You didn’t put enough bacon in my burger! If you did, I "
                    "wouldn’t be asking for more!"
                 << std::endl;
-};
+}
 
 void Harl::info() {
     std::cout   << "[ INFO ]" << std::endl
                 << "This is unacceptable! I want to speak to the manager now."
                 << std::endl;
-};
+}
 
 void Harl::warning() {
     std::cout   << "[ WARNING ]" << std::endl
@@ -61,4 +61,4 @@ void Harl::warning() {
                    "I’ve been coming for years whereas you started working "
                    "here since last month."
                 << std::endl;
-};
+}

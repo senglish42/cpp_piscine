@@ -31,6 +31,9 @@ void Harl::complain(std::string level) {
             return;
         }
     }
+    std::cerr   << "ERROR: complaint " << level << " can not be found."
+                << std::endl;
+    exit (1);
 }
 
 void Harl::debug() {

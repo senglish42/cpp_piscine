@@ -16,14 +16,14 @@
 #include "Weapon.hpp"
 
 class HumanB {
-public:
-    HumanB( const std::string name );
-    ~HumanB( void );
-    void    attack();
-    void    setWeapon(Weapon &weapon);
-private:
-    const std::string _name;
-    Weapon* _weapon;
+    public:
+        HumanB( const std::string name );
+        ~HumanB( void );
+        void    attack();
+        void    setWeapon(Weapon &weapon);
+    private:
+        const std::string _name;
+        Weapon* _weapon;
 };
 
 #endif

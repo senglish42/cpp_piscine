@@ -1,4 +1,4 @@
-NAME	=	a.out
+NAME	=	harlFilter
 
 OBJ_DIR	=	.obj
 
@@ -23,7 +23,7 @@ $(OBJ_DIR)/%.o:%.cpp $(HEADER)
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJ)
-	$(CC) $(CFLAGS) $(SRCS)
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 
 clean	:
 	$(RM) $(OBJ_DIR)

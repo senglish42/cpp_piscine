@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <cstring>
+#include <cstdlib>
 
 class   Harl
 {
