@@ -19,6 +19,8 @@ class Brain
 {
     public:
         Brain();
+        Brain(const Brain& copy);
+        Brain& operator=(const Brain& brain);
         ~Brain();
         std::string ideas[100];
 };

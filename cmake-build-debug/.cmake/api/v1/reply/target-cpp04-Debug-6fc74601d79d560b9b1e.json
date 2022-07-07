@@ -102,31 +102,31 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "ex02/main.cpp",
+			"path" : "ex01/main.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "ex02/AAnimal.cpp",
+			"path" : "ex01/Animal.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "ex02/Cat.cpp",
+			"path" : "ex01/Cat.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "ex02/Dog.cpp",
+			"path" : "ex01/Dog.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "ex02/Brain.cpp",
+			"path" : "ex01/Brain.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

@@ -17,6 +17,21 @@ WrongAnimal::WrongAnimal() : type("wrong animal")
     std::cout << "Hiii! Here is a wrong animal." << std::endl;
 }
 
+WrongAnimal::WrongAnimal(const WrongAnimal &copy)
+{
+    std::cout << "Copy WrongAnimal constructor called." << std::endl;
+    *this = copy;
+}
+
+WrongAnimal& WrongAnimal::operator=(const WrongAnimal &wrongAnimal)
+{
+    std::cout << "Copy WrongAnimal assignment operator called." << std::endl;
+    if (this == &wrongAnimal)
+        return *this;
+    this->type = wrongAnimal.type;
+    return *this;
+}
+
 WrongAnimal::~WrongAnimal()
 {
     std::cout << "Bye, " << type << "!" << std::endl;

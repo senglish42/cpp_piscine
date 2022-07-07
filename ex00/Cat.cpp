@@ -12,7 +12,7 @@
 
 #include "Cat.hpp"
 
-Cat::Cat() : type("cat")
+Cat::Cat() : Animal(), type("cat")
 {
     std::cout << "Hiii! Here is a kittie-cat." << std::endl;
 }
@@ -30,5 +30,19 @@ void Cat::makeSound() const
 std::string Cat::getType() const
 {
     return "Look at this " + type;
-    //std::cout << "Look at this " << type << std::endl;
+}
+
+Cat::Cat(const Cat &copy) : Animal()
+{
+    std::cout << "Copy Cat constructor called." << std::endl;
+    *this = copy;
+}
+
+Cat& Cat::operator=(const Cat &cat)
+{
+    std::cout << "Copy Cat assignment operator called." << std::endl;
+    if (this == &cat)
+        return *this;
+    this->type = cat.type;
+    return *this;
 }

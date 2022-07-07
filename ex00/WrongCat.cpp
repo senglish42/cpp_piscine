@@ -12,9 +12,24 @@
 
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat() : type("wrong cat")
+WrongCat::WrongCat() : WrongAnimal(), type("wrong cat")
 {
     std::cout << "Hiii! Here is a wrong kittie-cat." << std::endl;
+}
+
+WrongCat::WrongCat(const WrongCat &copy) : WrongAnimal()
+{
+    std::cout << "Copy WrongCat constructor called." << std::endl;
+    *this = copy;
+}
+
+WrongCat& WrongCat::operator=(const WrongCat &wrongCat)
+{
+    std::cout << "Copy WrongCat assignment operator called." << std::endl;
+    if (this == &wrongCat)
+        return *this;
+    this->type = wrongCat.type;
+    return *this;
 }
 
 WrongCat::~WrongCat()

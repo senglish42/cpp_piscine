@@ -19,6 +19,8 @@ class Brain
 {
     public:
         Brain();
+        Brain(const Brain& copy);
+        Brain& operator=(const Brain& brain);
         ~Brain();
         const std::string&  getThoughts() const;
         void                setThoughts(const std::string& wisdom);

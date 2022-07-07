@@ -3,5 +3,5 @@ project(cpp04)
 
 set(CMAKE_CXX_STANDARD 98)
 
-add_executable(cpp04 ex02/main.cpp ex02/AAnimal.cpp ex02/Cat.cpp ex02/Dog.cpp
-        ex02/Brain.cpp)
+add_executable(cpp04 ex01/main.cpp ex01/Animal.cpp ex01/Cat.cpp ex01/Dog.cpp
+        ex01/Brain.cpp)

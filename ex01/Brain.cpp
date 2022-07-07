@@ -36,3 +36,18 @@ const std::string& Brain::getThoughts() const
 {
     return *ideas;
 }
+
+Brain::Brain(const Brain &copy)
+{
+    std::cout << "Copy Brain constructor called." << std::endl;
+    *this = copy;
+}
+
+Brain& Brain::operator=(const Brain &brain)
+{
+    std::cout << "Copy Brain assignment operator called." << std::endl;
+    if (this == &brain)
+        return *this;
+    *this->ideas = *brain.ideas;
+    return *this;
+}

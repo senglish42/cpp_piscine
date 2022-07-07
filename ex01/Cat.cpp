@@ -12,9 +12,26 @@
 
 #include "Cat.hpp"
 
-Cat::Cat() : type("cat"), _brain(new Brain())
+Cat::Cat() : Animal(), type("cat"), _brain(new Brain())
 {
     std::cout << "Hiii! Here is a kittie-cat." << std::endl;
+}
+
+Cat::Cat(const Cat &copy) : Animal(), _brain(new Brain(*copy._brain))
+{
+    std::cout << "Copy Cat constructor called." << std::endl;
+    *this = copy;
+}
+
+Cat& Cat::operator=(const Cat &cat)
+{
+    std::cout << "Copy Cat assignment operator called." << std::endl;
+    if (this == &cat)
+        return *this;
+    this->type = cat.type;
+    delete _brain;
+    _brain = new Brain(*cat._brain);
+    return *this;
 }
 
 Cat::~Cat()

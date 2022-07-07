@@ -22,6 +22,21 @@ AAnimal::~AAnimal()
     std::cout << "Bye, " << type << "!" << std::endl;
 }
 
+AAnimal::AAnimal(const AAnimal &copy)
+{
+    std::cout << "Copy Animal constructor called." << std::endl;
+    *this = copy;
+}
+
+AAnimal& AAnimal::operator=(const AAnimal &animal)
+{
+    std::cout << "Copy Animal assignment operator called." << std::endl;
+    if (this == &animal)
+        return *this;
+    this->type = animal.type;
+    return *this;
+}
+
 void AAnimal::makeSound() const
 {
     std::cout << type << " says: @#%&?!" << std::endl;
