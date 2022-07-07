@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "FragTrap.hpp"
 
 FragTrap::FragTrap() : ClapTrap(), _name("fragtrap"), _hit(100),
@@ -22,8 +21,8 @@ _energy(100), _damage(30)
 FragTrap::FragTrap(std::string name) : ClapTrap(name), _name(name), _hit(100),
 _energy(100), _damage(30)
 {
-    std::cout   << "Here is FragTrap called <" << _name << ">. Welcome!"
-                << std::endl;
+    std::cout   << "Here is FragTrap called \033[1;34m" << _name
+                << "\033[0m. Welcome!" << std::endl;
 }
 
 FragTrap::FragTrap( const FragTrap &copy) : ClapTrap(copy._name)
@@ -32,24 +31,25 @@ FragTrap::FragTrap( const FragTrap &copy) : ClapTrap(copy._name)
     *this = copy;
 }
 
-FragTrap FragTrap::operator=(const FragTrap &FragTrap)
+FragTrap& FragTrap::operator=(const FragTrap &fragTrap)
 {
     std::cout << "FragTrap copy assignment operator called" << std::endl;
-    if (this == &FragTrap)
+    if (this == &fragTrap)
         return *this;
-    this->_name = FragTrap._name;
-    this->_hit = FragTrap._hit;
-    this->_energy = FragTrap._energy;
-    this->_damage = FragTrap._damage;
+    this->_name = fragTrap._name;
+    this->_hit = fragTrap._hit;
+    this->_energy = fragTrap._energy;
+    this->_damage = fragTrap._damage;
     return *this;
 }
 
-FragTrap::~FragTrap() {
-    std::cout << "FragTrap <" << _name << "> left the area." << std::endl;
+FragTrap::~FragTrap()
+{
+    std::cout << "FragTrap \033[1;31m" << _name << "\033[0m left the area." << std::endl;
 }
 
 void FragTrap::highFivesGuys() {
-    std::cout   << "FragTrap <" << _name << "> is about to share its points "
+    std::cout   << "FragTrap \033[1;34m" << _name << "\033[0m is about to share its points "
                 << "to ClapTraps and attack ScavTrap. High Fiiiive!"
                 << std::endl;
     if (_energy > 0)
@@ -61,65 +61,9 @@ void FragTrap::highFivesGuys() {
 }
 
 void FragTrap::getRound() {
-    std::cout   << "FragTrap <" << _name << "> has <" << _hit
-                << "> hit points and <" << _energy
-                << "> energy points." << std::endl;
-}
-
-void FragTrap::takeDamage(unsigned int amount)
-{
-    _hit -= amount;
-    std::cout   << "ClapTrap <" << _name << "> takes <"
-                << amount << "> points of damage";
-    std::cout   << std::endl;
-}
-
-void FragTrap::keepFighting()
-{
-    std::cout   << "FragTrap <" << _name << "> has <"
-                << _hit << "> hit points and <" << _energy << "> energy points"
-                << " ,still okay to keep fighting" << std::endl;
-}
-
-void FragTrap::noEnergy()
-{
-    std::cout << "ClapTrap <" << _name << "> has no energy "
-              << "to be recovered" << std::endl;
-}
-
-void FragTrap::noHit()
-{
-    std::cout   << "ClapTrap <" << _name << "> doesn't have hit points to "
-                << "continue battle." << std::endl;
-}
-
-void FragTrap::beRepaired(unsigned int amount){
-    if (_round == 1 && _hit == 10)
-        return ;
-    if (_hit > 0)
-        keepFighting();
-    if ((int)amount < _hit || _energy > _hit)
-    {
-        if (_hit <= 0 || _energy <= 0)
-        {
-            if (_hit <= 0)
-                std::cout   << "ClapTrap <" << _name << "> lost all hit points"
-                            <<  std::endl;
-            return ;
-        }
-        int hit, energy;
-
-        energy = 10;
-        if (_energy < energy)
-            energy = _energy;
-        hit = rand() % 10 + 1;
-        energy = rand() % energy + 1;
-        _hit += hit;
-        _energy -= energy;
-        std::cout   << "ClapTrap <" << _name << "> spent <"
-                    << energy << " energy points to get <"
-                    << hit << "> hit points" <<  std::endl;
-    }
+    std::cout   << "FragTrap \033[1;34m" << _name << "\033[0m has \033[1;96m" << _hit
+                << "\033[0m hit points and \033[1;96m" << _energy
+                << "\033[0m energy points." << std::endl;
 }
 
 int FragTrap::getHit()
@@ -142,23 +86,19 @@ void FragTrap::attack(const std::string& target)
         energy = rand() % energy + 1;
         _energy -= energy;
         _damage = rand() % 10 + 1;
-        std::cout << "FragTrap <" << _name << "> attacks <"
-                  << target << "> with <" << energy << "> points of energy "
+        std::cout << "FragTrap \033[1;34m" << _name << "\033[0m attacks <"
+                  << target << "> with \033[1;34m" << energy << "\033[0m points of energy "
                   << "and causing <" << _damage << "> points of damage!"
                   << std::endl;
     }
 }
 
-int FragTrap::getDamage()
+int FragTrap::getDamage() const
 {
-    int     damage;
-
-    damage = _damage;
-    _damage = 0;
-    return damage;
+    return this->_damage;
 }
 
-const std::string FragTrap::getName()
+const std::string& FragTrap::getName() const
 {
     return this->_name;
 }

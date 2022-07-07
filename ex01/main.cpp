@@ -17,18 +17,20 @@ void final(ClapTrap &one, ClapTrap &two, ScavTrap &three, int end)
 {
     if (end == 1)
     {
-        std::cout   << "ClapTrap <" << one.getName() << "> and ClapTrap <"
-                    << two.getName() << "> lost the battle against of "
-                    << "ScavTrap <" << three.getName()
-                    << ">. All of humanity unborn and destroyed."
+        std::cout   << "ClapTrap \033[1;95m" << one.getName()
+                    << "\033[0m and ClapTrap \033[1;95m" << two.getName()
+                    << "\033[0m lost the battle against of "
+                    << "ScavTrap \033[1;31m" << three.getName()
+                    << "\033[0m. All of humanity unborn and destroyed."
                     << std::endl;
     }
     else
     {
-        std::cout   << "ClapTrap <" << one.getName() << "> and ClapTrap <"
-                    << two.getName() << "> won the battle against of "
-                    << "ScavTrap <" << three.getName()
-                    << ">. All of humanity has got another chance to survive."
+        std::cout   << "ClapTrap \033[1;95m" << one.getName()
+                    << "\033[0m and ClapTrap \033[1;95m" << two.getName()
+                    << "\033[0m won the battle against of "
+                    << "ScavTrap \033[1;31m" << three.getName()
+                    << "\033[0m. All of humanity has got another chance to survive."
                     << std::endl;
     }
 }
@@ -97,8 +99,9 @@ void start()
     sleep(1);
     while (1)
     {
-        std::cout   << "[TYPE ""START"" TO CONTINUE]" << std::endl;
-        std::cin >> start;
+        std::cout   << "\033[1;33m[TYPE ""START"" TO CONTINUE]\033[0m"
+                    << std::endl;
+        std::cin    >> start;
         if (start == "START")
             break ;
     }
@@ -106,13 +109,14 @@ void start()
 
 void title()
 {
-    std::cout   << "The worldwide is splited by two parts and both are "
+    std::cout   << "\033[1;36mThe worldwide is splited by two parts and both"
+                   " are "
                  "depleting sources in needs of war. Humans are not fighting "
                  "but creating ClapTrap cyborgs to battle against each other."
                  " But one day a derived AI ScavTrap robot had been created "
                  "and found out destroying the world is the only way to "
                  "finish war. Thus, human beings are united again, to versus "
-                 "their ClapTraps against ScavTrap. Let it begin."
+                 "their ClapTraps against ScavTrap. Let it begin.\033[0m"
                 << std::endl;
 }
 

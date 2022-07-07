@@ -24,8 +24,8 @@ DiamondTrap::DiamondTrap(const std::string &name) : ClapTrap(name +
 ScavTrap(name), FragTrap(name), _name(name), _hit(FragTrap::_hit), _energy
 (ScavTrap::_energy), _damage(FragTrap::_damage)
 {
-    std::cout   << "Here is DiamondTrap called <" << _name << ">. Welcome!"
-                << std::endl;
+    std::cout   << "Here is DiamondTrap called \033[1;35m" << _name
+                << "\033[0m. Welcome!" << std::endl;
 }
 
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &diamondTrap)
@@ -47,45 +47,48 @@ _name(copy._name), _hit(copy._hit), _energy(copy._energy), _damage(copy._damage)
     std::cout << "DiamondTrap copy constructor called" << std::endl;
 }
 
+DiamondTrap::~DiamondTrap()
+{
+    std::cout   << "DiamondTrap \033[1;35m" << _name << "\033[0m left the area."
+                << std::endl;
+}
+
 void DiamondTrap::attack(const std::string& target)
 {
-    this->ScavTrap::_damage = this->_damage;
-    this->ScavTrap::_energy = this->_energy;
-    this->ScavTrap::_hit = this->_hit;
     ScavTrap::attack(target);
-    this->_damage = this->ScavTrap::_damage;
-    this->_energy = this->ScavTrap::_energy;
-    this->_hit = this->ScavTrap::_hit;
 }
 
-DiamondTrap::~DiamondTrap() {
-    std::cout << "DiamondTrap <" << _name << "> left the area." << std::endl;
+void DiamondTrap::getRound()
+{
+    FragTrap::_hit = _hit;
+    FragTrap::_damage = _damage;
+    ScavTrap::_energy = _energy;
+    std::cout   << "DiamondTrap \033[1;35m" << _name << "\033[0m has \033[1;96m"
+                << _hit << "\033[0m hit points and \033[1;96m"
+                << _energy << "\033[0m energy points." << std::endl;
 }
 
-void DiamondTrap::getRound() {
-    std::cout   << "DiamondTrap <" << _name << "> has <" << _hit
-                << "> hit points and <" << _energy
-                << "> energy points." << std::endl;
-}
-
-void DiamondTrap::whoAmI() {
-    std::cout   << "DiamondTrap <" << _name << "> is thinking he is ";
+void DiamondTrap::whoAmI() const
+{
+    std::cout   << "DiamondTrap \033[1;35m" << _name
+                << "\033[0m a.k.a. ClapTrap \033[1;95m" << ClapTrap::_name
+                << "\033[0m is thinking he is a ";
     if (!(ClapTrap::_round % 2))
-        std::cout   << "derived FragTrap" << std::endl;
+        std::cout << "derived FragTrap." << std::endl;
     else
-        std::cout   << "derived ScavTrap" << std::endl;
+        std::cout << "derived ScavTrap." << std::endl;
 }
 
-std::string DiamondTrap::getName() const
+const std::string& DiamondTrap::getName() const
 {
     return this->_name;
 }
 
 void DiamondTrap::highFivesGuys()
 {
-    std::cout   << "DiamondTrap <" << _name << "> is about to share its points "
-                << "to ClapTraps and attack ScavTrap. High Fiiiive!"
-                << std::endl;
+    std::cout   << "DiamondTrap \033[1;35m" << _name << "\033[0m is about to "
+                << "share its points to ClapTraps and attack ScavTrap. "
+                << "High Fiiiive!" << std::endl;
     if (_energy > 0)
         _energy -= 10;
     if (_hit > 0)
@@ -94,24 +97,24 @@ void DiamondTrap::highFivesGuys()
         _damage -= 5;
 }
 
-int DiamondTrap::getHit()
+int DiamondTrap::getHit() const
 {
     return this->_hit;
 }
 
-void DiamondTrap::noEnergy()
+void DiamondTrap::noEnergy() const
 {
-    std::cout << "ScavTrap <" << _name << "> has no energy "
+    std::cout << "DiamondTrap \033[1;35m" << _name << "\033[0m has no energy "
               << "to be recovered" << std::endl;
 }
 
-void DiamondTrap::noHit()
+void DiamondTrap::noHit() const
 {
-    std::cout   << "ScavTrap <" << _name << "> doesn't have hit points to "
-                << "continue battle." << std::endl;
+    std::cout   << "DiamondTrap \033[1;35m" << _name << "\033[0m doesn't have "
+                << "hit points to continue battle." << std::endl;
 }
 
-int DiamondTrap::getEnergy()
+int DiamondTrap::getEnergy() const
 {
     return this->_energy;
 }
@@ -125,18 +128,19 @@ int DiamondTrap::getDamage()
     return damage;
 }
 
-void DiamondTrap::keepFighting()
+void DiamondTrap::keepFighting() const
 {
-    std::cout   << "DiamondTrap <" << _name << "> has <"
-                << _hit << "> hit points and <" << _energy << "> energy points"
-                << ", still okay to keep fighting" << std::endl;
+    std::cout   << "DiamondTrap \033[1;35m" << _name << "\033[0m has \033[1;96m"
+                << _hit << "\033[0m hit points and \033[1;96m" << _energy
+                << "\033[0m energy points, still okay to keep fighting."
+                << std::endl;
 }
 
 void DiamondTrap::takeDamage(unsigned int amount)
 {
     _hit -= amount;
-    std::cout   << "DiamnondTrap <" << _name << "> takes <"
-                << amount << "> points of damage";
+    std::cout   << "DiamnondTrap \033[1;35m" << _name << "\033[0m takes \033[1;96m"
+                << amount << "\033[0m points of damage";
     std::cout   << std::endl;
 }
 
@@ -150,9 +154,8 @@ void DiamondTrap::beRepaired(unsigned int amount){
         if (_hit <= 0 || _energy <= 0)
         {
             if (_hit <= 0)
-                std::cout   << "DiamondTrap <" << _name << "> lost all hit "
-                                                          "points"
-                            <<  std::endl;
+                std::cout   << "DiamondTrap \033[1;35m" << _name
+                            << "\033[0m lost all hit points" << std::endl;
             return ;
         }
         int hit, energy;
@@ -164,21 +167,23 @@ void DiamondTrap::beRepaired(unsigned int amount){
         energy = rand() % energy + 1;
         _hit += hit;
         _energy -= energy;
-        std::cout   << "DiamondTrap <" << _name << "> spent <"
-                    << energy << "> energy points to get <"
-                    << hit << "> hit points" <<  std::endl;
+        std::cout   << "DiamondTrap \033[1;35m" << _name << "\033[0m spent "
+                    << "\033[1;96m" << energy << "\033[0m energy points to "
+                    << "get \033[1;96m" << hit << "\033[0m hit points"
+                    << std::endl;
     }
 }
 
-void DiamondTrap::guardGate() {
-    std::cout   << "DiamondTrap <" << _name << "> is now in Gate keeper mode."
-                << std::endl;
+void DiamondTrap::guardGate() const
+{
+    std::cout   << "DiamondTrap \033[1;35m" << _name << "\033[0m is now in "
+                << "Gate keeper mode." << std::endl;
 }
 
-void DiamondTrap::five_attack(std::string fragTrap)
+void DiamondTrap::five_attack(const std::string& fragTrap)
 {
     _hit -= 5;
-    std::cout   << "DiamondTrap <" << _name << "> loses its 5 hit points cause "
-                                             "of "
-                << "FragTrap <" << fragTrap << "> attack." << std::endl;
+    std::cout   << "DiamondTrap \033[1;35m" << _name << "\033[0m loses its "
+                << "\033[1;96m5 \033[0m" << "hit points cause of FragTrap "
+                << "\033[1;34m" << fragTrap << "\033[0m attack." << std::endl;
 }

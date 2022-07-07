@@ -19,18 +19,20 @@ void final(ClapTrap &one, ClapTrap &two, ScavTrap &three, int end)
 {
     if (end == 1)
     {
-        std::cout   << "ClapTrap <" << one.getName() << "> and ClapTrap <"
-                    << two.getName() << "> lost the battle against of "
-                    << "ScavTrap <" << three.getName()
-                    << ">. All of humanity unborn and destroyed."
+        std::cout   << "ClapTrap \033[1;95m" << one.getName()
+                    << "\033[0m and ClapTrap \033[1;95m" << two.getName()
+                    << "\033[0m lost the battle against of "
+                    << "ScavTrap \033[1;31m" << three.getName()
+                    << "\033[0m. All of humanity unborn and destroyed."
                     << std::endl;
     }
     else
     {
-        std::cout   << "ClapTrap <" << one.getName() << "> and ClapTrap <"
-                    << two.getName() << "> won the battle against of "
-                    << "ScavTrap <" << three.getName()
-                    << ">. All of humanity has got another chance to survive."
+        std::cout   << "ClapTrap \033[1;95m" << one.getName()
+                    << "\033[0m and ClapTrap \033[1;95m" << two.getName()
+                    << "\033[0m won the battle against of "
+                    << "ScavTrap \033[1;31m" << three.getName()
+                    << "\033[0m. All of humanity has got another chance to survive."
                     << std::endl;
     }
 }
@@ -54,6 +56,9 @@ void loser(ClapTrap &one, ClapTrap &two, ScavTrap &three)
 
 void get_fives(ClapTrap &one, ClapTrap &two, ScavTrap &three, FragTrap &four)
 {
+    if (!four.getDamage() || !four.getHit() || !four.getEnergy())
+        return;
+    four.highFivesGuys();
     std::string fragTrap = four.getName();
     one.five_boost(fragTrap);
     two.five_boost(fragTrap);
@@ -107,8 +112,9 @@ void start()
     sleep(1);
     while (1)
     {
-        std::cout   << "[TYPE ""START"" TO CONTINUE]" << std::endl;
-        std::cin >> start;
+        std::cout   << "\033[1;33m[TYPE ""START"" TO CONTINUE]\033[0m"
+                    << std::endl;
+        std::cin    >> start;
         if (start == "START")
             break ;
     }
@@ -116,10 +122,10 @@ void start()
 
 void title()
 {
-    std::cout   << "ClapTrap's derived AI ScavTrap robot is back. Luckily, "
+    std::cout   << "\033[1;36mClapTrap's derived AI ScavTrap robot is back. Luckily, "
                    "humans are prepared for its repeated invasion, so they "
                    "made another ClapTrap's derived AI called FragTrap, to "
-                   "recharge ClapTrap robots easily. Thus, here we go again."
+                   "recharge ClapTrap robots easily. Thus, here we go again.\033[0m"
                 << std::endl;
 }
 
@@ -145,7 +151,6 @@ int main()
         if (scav_attack(*Mickey, Jared, Robert))
             break ;
         sleep(1);
-        Carl.highFivesGuys();
         get_fives(*Mickey, Jared, Robert, Carl);
     }
     delete Mickey;

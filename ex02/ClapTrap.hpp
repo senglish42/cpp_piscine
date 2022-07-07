@@ -18,18 +18,18 @@
 
 class ClapTrap {
     public:
-        ClapTrap(std::string name);
-        ClapTrap( const ClapTrap &copy);
-        ClapTrap operator=(const ClapTrap &clapTrap);
-        ~ClapTrap( void );
-        const std::string   getName( void );
-        int                 getDamage( void );
-        int                 getHit( void );
-        int                 getEnergy( void );
+        ClapTrap(const std::string& name);
+        ClapTrap(const ClapTrap &copy);
+        ClapTrap& operator=(const ClapTrap &clapTrap);
+        ~ClapTrap();
+        const std::string&  getName() const;
+        int                 getDamage();
+        int                 getHit();
+        int                 getEnergy();
         void                noEnergy(bool &flag);
         void                noHit(bool &flag);
-        void                keepFighting( void );
-        void                five_boost(const std::string fragTrap);
+        void                keepFighting();
+        void                five_boost(const std::string& fragTrap);
         void                attack(const std::string& target);
         void                takeDamage(unsigned int amount);
         void                beRepaired(unsigned int amount);

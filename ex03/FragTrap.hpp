@@ -18,21 +18,15 @@
 class FragTrap : virtual public ClapTrap {
     public:
         explicit FragTrap(const std::string &name);
-        FragTrap( const FragTrap &copy);
-        FragTrap &operator=(const FragTrap &fragTrap);
+        FragTrap(const FragTrap &copy);
+        FragTrap& operator=(const FragTrap &fragTrap);
         virtual ~FragTrap();
-        virtual std::string getName() const;
-        virtual void        highFivesGuys();
-        virtual void        getRound();
-        virtual int         getDamage();
-        virtual int         getHit();
-        virtual int         getEnergy();
-        virtual void        noEnergy();
-        virtual void        noHit();
-        virtual void        keepFighting();
-        virtual void        takeDamage(unsigned int amount);
-        virtual void        beRepaired(unsigned int amount);
-        virtual void        attack(const std::string& target);
+        virtual const std::string&  getName() const;
+        virtual void                highFivesGuys();
+        virtual void                getRound();
+        int                         getDamage() const;
+        virtual int                 getHit() const;
+        virtual int                 getEnergy() const;
     protected:
         std::string _name;
         int         _hit;

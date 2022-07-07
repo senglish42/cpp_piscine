@@ -21,23 +21,23 @@ class DiamondTrap : virtual public ScavTrap, virtual public FragTrap
     public:
         explicit DiamondTrap(const std::string &name);
         DiamondTrap(const DiamondTrap &copy);
-        DiamondTrap &operator=(const DiamondTrap &DiamondTrap);
+        DiamondTrap& operator=(const DiamondTrap &DiamondTrap);
         virtual ~DiamondTrap();
-        virtual std::string   getName() const;
-        virtual void                guardGate();
-        virtual void                getRound();
-        virtual int                 getDamage();
-        virtual int                 getHit();
-        virtual int                 getEnergy();
-        virtual void                noEnergy();
-        virtual void                noHit();
-        virtual void                keepFighting();
-        virtual void                five_attack(std::string fragTrap);
-        virtual void                takeDamage(unsigned int amount);
-        virtual void                beRepaired(unsigned int amount);
-        virtual void                attack(const std::string& target);
-        virtual void                highFivesGuys();
-        void                        whoAmI();
+        virtual const std::string&  getName() const; //+
+        virtual void                guardGate() const;
+        virtual void                getRound(); //+
+        virtual int                 getDamage(); //+
+        virtual int                 getHit() const; //+
+        virtual int                 getEnergy() const; //+
+        virtual void                noEnergy() const; //+
+        virtual void                noHit() const; //+
+        virtual void                keepFighting() const; //+
+        virtual void                five_attack(const std::string& fragTrap);//+
+        virtual void                takeDamage(unsigned int amount); //+
+        virtual void                beRepaired(unsigned int amount); //+
+        virtual void                attack(const std::string& target); //+
+        virtual void                highFivesGuys(); //+
+        void                        whoAmI() const;
     private:
         DiamondTrap();
         std::string _name;

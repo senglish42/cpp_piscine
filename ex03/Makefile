@@ -5,7 +5,7 @@ OBJ_DIR	=	.obj
 SRCS	=	main.cpp	ClapTrap.cpp	ScavTrap.cpp	FragTrap.cpp\
 			DiamondTrap.cpp
 
-CFLAGS	=	-std=c++98 -Wall -Werror -Wextra
+CFLAGS	=	-std=c++98 -Wall -Werror -Wextra -Wshadow -Wno-shadow
 
 OBJ		= 	$(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
 

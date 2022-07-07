@@ -17,20 +17,20 @@
 
 class ScavTrap : virtual public ClapTrap{
     public:
-        ScavTrap(const std::string &name);
-        ScavTrap( const ScavTrap &copy);
-        ScavTrap operator=(const ScavTrap &scavTrap);
-        ~ScavTrap( void );
-        const std::string   getName( void );
-        void                guardGate( void );
-        void                getRound( void );
-        int                 getDamage( void );
-        int                 getHit( void );
-        int                 getEnergy( void );
-        void                noEnergy( void );
-        void                noHit( void );
-        void                keepFighting( void );
-        void                five_attack(std::string fragTrap);
+        ScavTrap(const std::string& name);
+        ScavTrap(const ScavTrap& copy);
+        ScavTrap& operator=(const ScavTrap& scavTrap);
+        ~ScavTrap();
+        const std::string&   getName() const;
+        void                guardGate();
+        void                getRound();
+        int                 getDamage();
+        int                 getHit();
+        int                 getEnergy();
+        void                noEnergy();
+        void                noHit();
+        void                keepFighting();
+        void                five_attack(const std::string &fragTrap);
         void                takeDamage(unsigned int amount);
         void                beRepaired(unsigned int amount);
         void                attack(const std::string& target);
@@ -40,7 +40,7 @@ class ScavTrap : virtual public ClapTrap{
         int         _energy;
         int         _damage;
     private:
-        ScavTrap( void );
+        ScavTrap();
 };
 
 #endif

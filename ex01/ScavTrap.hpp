@@ -15,12 +15,13 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap{
+class ScavTrap : public ClapTrap
+{
     public:
-        ScavTrap(std::string name);
-        ScavTrap( const ScavTrap &copy);
-        ScavTrap operator=(const ScavTrap &scavTrap);
-        ~ScavTrap( void );
+        ScavTrap(const std::string& name);
+        ScavTrap(const ScavTrap& copy);
+        ScavTrap& operator=(const ScavTrap& scavTrap);
+        ~ScavTrap();
         const std::string   getName();
         void                guardGate( void );
         void                getRound();
@@ -33,15 +34,13 @@ class ScavTrap : public ClapTrap{
         void                takeDamage(unsigned int amount);
         void                beRepaired(unsigned int amount);
         void                attack(const std::string& target);
-protected:
+    protected:
         std::string _name;
         int         _hit;
         int         _energy;
         int         _damage;
     private:
-        ScavTrap( void );
-
-
+        ScavTrap();
 };
 
 #endif

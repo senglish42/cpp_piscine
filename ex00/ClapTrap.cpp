@@ -13,10 +13,10 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap(const std::string &name) : _name(name), _hit(10), _energy
-(10),
-_damage(0)
+(10), _damage(0)
 {
-    std::cout << "<" << _name << ">, welcome to the battle!" << std::endl;
+    std::cout   << "ClapTrap \033[1;95m" << _name
+                << "\033[0m, welcome to the battle!" << std::endl;
 }
 
 ClapTrap::ClapTrap( const ClapTrap &copy) : _name(copy._name), _hit(copy._hit),
@@ -24,7 +24,7 @@ _energy(copy._energy), _damage(copy._damage)
 {
     std::cout << "Copy constructor called" << std::endl;
 }
-ClapTrap ClapTrap::operator=(const ClapTrap &clapTrap)
+ClapTrap& ClapTrap::operator=(const ClapTrap &clapTrap)
 {
     std::cout << "Copy assignment operator called" << std::endl;
     if (this == &clapTrap)
@@ -38,7 +38,7 @@ ClapTrap ClapTrap::operator=(const ClapTrap &clapTrap)
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "<" << _name << "> left the area." << std::endl;
+    std::cout << "\033[1;95m" << _name << "\033[0m left the area." << std::endl;
 }
 
 ClapTrap* clapTrap(const std::string &name )
@@ -79,41 +79,44 @@ void ClapTrap::attack(const std::string& target)
         energy = rand() % _energy + 1;
         _energy -= energy;
         _damage = rand() % 10 + 1;
-        std::cout << "ClapTrap <" << _name << "> attacks <"
-                  << target << "> with <" << energy << "> points of energy "
-                  << "and causing <" << _damage << "> points of damage!";
+        std::cout << "ClapTrap \033[1;95m" << _name << "\033[0m attacks "
+                  << "\033[1;95m" << target << "\033[0m with \033[1;96m" <<
+                  energy << "\033[0m points of energy "
+                  << "and causing \033[1;96m" <<
+                  _damage << "\033[0m points of damage!";
     }
     else
     {
-        std::cout << "ClapTrap <" << _name << "> has no energy "
-                  << "to attack <" << target << ">";
+        std::cout << "ClapTrap \033[1;95m" << _name << "\033[0m has no energy "
+                  << "to attack \033[1;96m" << target << "\033[0m.";
     }
     std::cout   << std::endl;
 }
 void ClapTrap::takeDamage(unsigned int amount)
 {
     _hit -= amount;
-    std::cout   << "ClapTrap <" << _name << "> takes <"
-                << amount << "> points of damage";
+    std::cout   << "ClapTrap \033[1;95m" << _name << "\033[0m takes \033[1;96m"
+                << amount << "\033[0m points of damage.";
     std::cout   << std::endl;
 }
 
 void ClapTrap::keepFighting()
 {
-    std::cout   << "ClapTrap <" << _name << "> has <"
-                << _hit << "> hit points and <" << _energy << "> energy points"
-                << " ,still okay to keep fighting" << std::endl;
+    std::cout   << "ClapTrap \033[1;95m" << _name << "\033[0m has \033[1;96m"
+                << _hit << "\033[0m hit points and \033[1;96m" << _energy
+                << "\033[0m energy points ,still okay to keep fighting."
+                << std::endl;
 }
 
 void ClapTrap::noEnergy()
 {
-    std::cout << "ClapTrap <" << _name << "> has no energy "
-              << "to be recovered" << std::endl;
+    std::cout << "ClapTrap \033[1;95m" << _name << "\033[0m has no energy "
+              << "to be recovered." << std::endl;
 }
 
 void ClapTrap::noHit()
 {
-    std::cout   << "ClapTrap <" << _name << "> doesn't have hit points to "
+    std::cout   << "ClapTrap \033[1;95m" << _name << "\033[0m doesn't have hit points to "
                 << "continue battle." << std::endl;
 }
 
@@ -126,9 +129,9 @@ void ClapTrap::beRepaired(unsigned int amount){
     {
         if (_hit < 0)
         {
-            _energy = 0;
-            std::cout   << "ClapTrap <" << _name << "> lost all hit points"
-                        <<  std::endl;
+            _hit = 0;
+            std::cout   << "ClapTrap \033[1;95m" << _name << "\033[0m lost "
+                        << "all hit points." <<  std::endl;
             return ;
         }
         int hit, energy;
@@ -137,26 +140,29 @@ void ClapTrap::beRepaired(unsigned int amount){
         energy = rand() % _energy + 1;
         _hit += hit;
         _energy -= energy;
-        std::cout   << "ClapTrap <" << _name << "> spent <"
-                    << energy << " energy points to get <"
-                    << hit << "> hit points" <<  std::endl;
+        std::cout   << "ClapTrap \033[1;95m" << _name << "\033[0m spent "
+                    << "\033[1;96m" << energy << "\033[0m energy points to "
+                    << "get \033[1;96m" << hit << "\033[0m hit points."
+                    << std::endl;
     }
 }
 
 void ClapTrap::getRound(const ClapTrap &clapTrap)
 {
-    std::cout   << "Let's begin the #" << ++_round << " round" << std::endl;
-    std::cout   << "<" << _name << "> has <" << _hit << "> hit points and <"
-                << _energy << "> energy points." << std::endl;
-    std::cout   << "<" << clapTrap._name << "> has <" << clapTrap._hit
-                << "> hit points and <" << clapTrap._energy
-                << "> energy points." << std::endl;
+    std::cout   << "\033[1;33mLet's begin the #" << ++_round << " round."
+                << "\033[0m" << std::endl;
+    std::cout   << "\033[1;95m" << _name << "\033[0m has \033[1;96m" << _hit
+                << "\033[0m hit points and \033[1;96m" << _energy
+                << "\033[0m energy points." << std::endl;
+    std::cout   << "\033[1;95m" << clapTrap._name << "\033[0m has \033[1;96m"
+                << clapTrap._hit << "\033[0m hit points and \033[1;96m"
+                << clapTrap._energy << "\033[0m energy points." << std::endl;
 }
 
 void ClapTrap::winner(const ClapTrap &clapTrap)
 {
-    std::cout   << "<" << _name << "> won a battle against of <"
-                << clapTrap._name << ">" << std::endl;
+    std::cout   << "\033[1;95m" << _name << "\033[0m won a battle against of "
+                << "\033[1;95m" << clapTrap._name << "\033[0m." << std::endl;
 }
 
 int ClapTrap::_round = 0;

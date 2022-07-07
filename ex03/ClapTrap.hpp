@@ -16,24 +16,25 @@
 #include <iostream>
 #include <cstdlib>
 
-class ClapTrap {
+class ClapTrap
+{
     public:
         explicit ClapTrap(const std::string &name);
         ClapTrap( const ClapTrap &copy);
-        ClapTrap &operator=(const ClapTrap &clapTrap);
+        ClapTrap& operator=(const ClapTrap &clapTrap);
         virtual ~ClapTrap();
-        virtual std::string         getName() const;
+        virtual const std::string&  getName() const;
         virtual int                 getDamage();
-        virtual int                 getHit();
-        virtual int                 getEnergy();
+        virtual int                 getHit() const;
+        virtual int                 getEnergy() const;
         virtual void                noEnergy(bool &flag);
         virtual void                noHit(bool &flag);
-        virtual void                keepFighting();
+        virtual void                keepFighting() const;
         virtual void                attack(const std::string& target);
         virtual void                takeDamage(unsigned int amount);
         virtual void                beRepaired(unsigned int amount);
         virtual void                getRound();
-        void                        five_boost(const std::string &fragTrap);
+        void                        five_boost(const std::string& fragTrap);
         static int                  _round;
     protected:
         std::string                 _name;

@@ -18,9 +18,9 @@
 
 class ClapTrap {
     public:
-        ClapTrap(std::string name);
+        ClapTrap(const std::string& name);
         ClapTrap( const ClapTrap &copy);
-        ClapTrap operator=(const ClapTrap &clapTrap);
+        ClapTrap& operator=(const ClapTrap &clapTrap);
         ~ClapTrap( void );
         const std::string   getName();
         int                 getDamage();
@@ -39,7 +39,7 @@ class ClapTrap {
         int                 _energy;
         int                 _damage;
         static int          _round;
-        ClapTrap( void );
+        ClapTrap( void ) {}
 };
 
 ClapTrap *clapTrap(const std::string &name);

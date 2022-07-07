@@ -20,7 +20,7 @@ class ClapTrap {
     public:
         ClapTrap(const std::string &name);
         ClapTrap( const ClapTrap &copy);
-        ClapTrap operator=(const ClapTrap &clapTrap);
+        ClapTrap& operator=(const ClapTrap &clapTrap);
         ~ClapTrap( void );
         const std::string   getName();
         int                 getDamage();

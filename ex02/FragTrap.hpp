@@ -15,23 +15,19 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap {
+class FragTrap : public ClapTrap
+{
     public:
         FragTrap(std::string name);
-        FragTrap( const FragTrap &copy);
-        FragTrap operator=(const FragTrap &fragTrap);
-        ~FragTrap( void );
-        const std::string   getName( void );
-        void                highFivesGuys( void );
-        void                getRound( void );
-        int                 getDamage( void );
-        int                 getHit( void );
-        int                 getEnergy( void );
-        void                noEnergy( void );
-        void                noHit( void );
-        void                keepFighting( void );
-        void                takeDamage(unsigned int amount);
-        void                beRepaired(unsigned int amount);
+        FragTrap(const FragTrap &copy);
+        FragTrap& operator=(const FragTrap &fragTrap);
+        ~FragTrap();
+        const std::string&  getName() const;
+        void                highFivesGuys();
+        void                getRound();
+        int                 getDamage() const;
+        int                 getHit();
+        int                 getEnergy();
         void                attack(const std::string& target);
     protected:
         std::string _name;
