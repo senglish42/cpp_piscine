@@ -19,8 +19,8 @@ Dog::Dog() : type("dog"), _brain(new Brain())
 
 Dog::~Dog()
 {
-    std::cout << "Bye, " << type << "!" << std::endl;
     delete _brain;
+    std::cout << "Bye, " << type << "!" << std::endl;
 }
 
 void Dog::makeSound() const
@@ -31,5 +31,4 @@ void Dog::makeSound() const
 std::string Dog::getType() const
 {
     return "Look at this " + type;
-    //std::cout << "Look at this " << type << std::endl;
 }

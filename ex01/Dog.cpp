@@ -19,8 +19,8 @@ Dog::Dog() : type("dog"), _brain(new Brain())
 
 Dog::~Dog()
 {
-    std::cout << "Bye, " << type << "!" << std::endl;
     delete _brain;
+    std::cout << "Bye, " << type << "!" << std::endl;
 }
 
 void Dog::makeSound() const
@@ -31,5 +31,23 @@ void Dog::makeSound() const
 std::string Dog::getType() const
 {
     return "Look at this " + type;
-    //std::cout << "Look at this " << type << std::endl;
+}
+
+void Dog::setThoughts() const
+{
+    int num = rand() % 3;
+    if (num == 1)
+        _brain->setThoughts("Who Let The Dogs Out? Woof-woof-woof-woof.");
+    else if (num == 2)
+        _brain->setThoughts("rub against the leg...intensively.");
+    else
+        _brain->setThoughts("Sometimes it seems that me and other"
+                            " fluffy creatures woofing to me are kinda same. "
+                            "What if we could unite to get a society where "
+                            "everyone life matter...");
+}
+
+const std::string& Dog::getThoughts() const
+{
+    return _brain->getThoughts();
 }

@@ -15,7 +15,7 @@
 Brain::Brain()
 {
     std::cout << "Brain: My gosh! I have just been created!" << std::endl;
-    ideas[3] = "i want to eat";
+    *ideas = "i want to eat";
 }
 
 Brain::~Brain()

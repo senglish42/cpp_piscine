@@ -24,9 +24,16 @@ int main()
         meta[a] = new Cat();
 
     for (a = 0; a < 10; ++a)
-        std::cout << meta[a]->getType() << " " << std::endl;
-    for (a = 0; a < 10; ++a)
+    {
+        std::cout   << "............................"
+                    << meta[a]->getType()
+                    << " #" << a
+                    << "............................"
+                    << std::endl;
+        meta[a]->setThoughts();
         meta[a]->makeSound();
+        std::cout << meta[a]->getThoughts() << std::endl;
+    }
     for (a = 9; a >= 0; --a)
         delete meta[a];
 }

@@ -20,8 +20,10 @@ class Animal
     public:
         Animal();
         virtual ~Animal();
-        virtual void        makeSound() const;
-        virtual std::string getType() const;
+        virtual void                makeSound() const;
+        virtual std::string         getType() const;
+        virtual void                setThoughts() const = 0;
+        virtual const std::string&  getThoughts() const = 0;
     protected:
         std::string     type;
 };

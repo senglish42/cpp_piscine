@@ -20,6 +20,9 @@ class Brain
     public:
         Brain();
         ~Brain();
+        const std::string&  getThoughts() const;
+        void                setThoughts(const std::string& wisdom);
+    private:
         std::string ideas[100];
 };
 

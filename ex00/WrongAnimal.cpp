@@ -30,5 +30,4 @@ void WrongAnimal::makeSound() const
 std::string WrongAnimal::getType() const
 {
     return "Look at this " + type;
-    //std::cout << "Look at this " << type << std::endl;
 }

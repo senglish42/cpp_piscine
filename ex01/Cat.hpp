@@ -15,18 +15,21 @@
 
 #include "Animal.hpp"
 #include "Brain.hpp"
+#include <cstdlib>
 
 class Cat : public Animal
 {
     public:
         Cat();
         ~Cat();
-        virtual void        makeSound() const;
-        virtual std::string getType() const;
+        virtual void                makeSound() const;
+        virtual std::string         getType() const;
+        virtual void                setThoughts() const;
+        virtual const std::string&  getThoughts() const;
     protected:
         std::string         type;
     private:
-        Brain               *_brain;
+        Brain*               _brain;
 };
 
 #endif

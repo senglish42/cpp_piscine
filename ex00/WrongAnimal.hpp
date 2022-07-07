@@ -17,13 +17,13 @@
 
 class WrongAnimal
 {
-public:
-    WrongAnimal();
-    ~WrongAnimal();
-    void        makeSound() const;
-    virtual std::string getType() const;
-protected:
-    std::string     type;
+    public:
+        WrongAnimal();
+        virtual ~WrongAnimal();
+        void        makeSound() const;
+        virtual std::string getType() const;
+    protected:
+        std::string     type;
 };
 
 

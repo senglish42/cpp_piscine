@@ -19,8 +19,8 @@ Cat::Cat() : type("cat"), _brain(new Brain())
 
 Cat::~Cat()
 {
-    std::cout << "Bye, " << type << "!" << std::endl;
     delete _brain;
+    std::cout << "Bye, " << type << "!" << std::endl;
 }
 
 void Cat::makeSound() const
@@ -31,5 +31,4 @@ void Cat::makeSound() const
 std::string Cat::getType() const
 {
     return "Look at this " + type;
-    //std::cout << "Look at this " << type << std::endl;
 }

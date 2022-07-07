@@ -19,8 +19,8 @@ Cat::Cat() : type("cat"), _brain(new Brain())
 
 Cat::~Cat()
 {
-    std::cout << "Bye, " << type << "!" << std::endl;
     delete _brain;
+    std::cout << "Bye, " << type << "!" << std::endl;
 }
 
 void Cat::makeSound() const
@@ -31,5 +31,22 @@ void Cat::makeSound() const
 std::string Cat::getType() const
 {
     return "Look at this " + type;
-    //std::cout << "Look at this " << type << std::endl;
+}
+
+void Cat::setThoughts() const
+{
+    int num = rand() % 3 + 1;
+    if (num == 1)
+        _brain->setThoughts("need some milk");
+    else if (num == 2)
+        _brain->setThoughts("pee on shoes");
+    else
+        _brain->setThoughts("What if am I one those unique creatures "
+                            "that are inhabiting this universe just for a short "
+                            "while, and what will become then?");
+}
+
+const std::string& Cat::getThoughts() const
+{
+    return _brain->getThoughts();
 }

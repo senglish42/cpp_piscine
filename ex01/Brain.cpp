@@ -15,10 +15,24 @@
 Brain::Brain()
 {
     std::cout << "Brain: My gosh! I have just been created!" << std::endl;
-    ideas[3] = "i want to eat";
+    ideas[0] = ".";
 }
 
 Brain::~Brain()
 {
     std::cout << "Brain: No way! It seems that I am dying..." << std::endl;
+}
+
+void Brain::setThoughts(const std::string& wisdom)
+{
+    if (wisdom.size() > 100)
+        std::cout   << "[Brain: Too difficult to be thinking about.]"
+                    << std::endl;
+    else
+        ideas[0] = wisdom;
+}
+
+const std::string& Brain::getThoughts() const
+{
+    return *ideas;
 }
