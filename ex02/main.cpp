@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "time.h"
+#include <cstdlib>
+#include <ctime>
 #include "ClassA.hpp"
 #include "ClassB.hpp"
 #include "ClassC.hpp"

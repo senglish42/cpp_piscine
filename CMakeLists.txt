@@ -3,4 +3,4 @@ project(cpp06)
 
 set(CMAKE_CXX_STANDARD 98)
 
-add_executable(cpp06 ex00/main.cpp ex00/ClassStore.cpp)
+add_executable(cpp06 ex01/main.cpp)
