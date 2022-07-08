@@ -20,11 +20,10 @@ int main()
         std::cout << bb.getName() << std::endl;
         std::cout << bb.getValue() << std::endl;
         Intern kid;
-        Form* form;
-        form = kid.makeForm("shrubbery creation", "5th district");
-        kid.keep_form = form;
+        Form* form = kid.makeForm("shrubbery creation", "5th district");
+        kid.setForm(form);
         form->beSigned(bb);
-        form->signForm(bb);
+        bb.signForm(*form);
         bb.executeForm(*form);
         std::cout << bb-- << std::endl;
         std::cout << bb << std::endl;
@@ -37,7 +36,7 @@ int main()
     Bureaucrat *borya;
     try
     {
-        borya = new Bureaucrat("Borya", 80);
+        borya = new Bureaucrat("Borya", 30);
         std::cout << borya->getName() << std::endl;
         std::cout << borya->getValue() << std::endl;
         std::cout << *borya << std::endl;
@@ -45,13 +44,11 @@ int main()
         std::cout << cc++ << std::endl;
         std::cout << *borya << std::endl;
         Intern kid;
-        Form *form;
-        form = kid.makeForm("robotomy request", "little puppy");
-        kid.keep_form = form;
+        Form *form = kid.makeForm("robotomy request", "little puppy");
+        kid.setForm(form);
         form->beSigned(*borya);
-        form->signForm(*borya);
+        borya->signForm(*form);
         borya->executeForm(*form);
-
         delete borya;
         borya = NULL;
     }
@@ -68,11 +65,9 @@ int main()
         std::cout << stuff.getName() << std::endl;
         std::cout << stuff.getValue() << std::endl;
         Intern kid;
-        Form *form;
-        form = kid.makeForm("presidental pardon", "Bob Dylan");
-        kid.keep_form = form;
-        form->beSigned(stuff);
-        form->signForm(stuff);
+        Form *form = kid.makeForm("presidental pardon", "Bob Dylan");
+        kid.setForm(form);
+        stuff.signForm(*form);
         stuff.executeForm(*form);
         std::cout << stuff++ << std::endl;
         std::cout << stuff << std::endl;
@@ -86,11 +81,10 @@ int main()
     {
         Bureaucrat dumb("Stiffler", 100);
         Intern kid;
-        Form *form;
-        form = kid.makeForm("hook", "Paul's mom");
-        kid.keep_form = form;
+        Form *form = kid.makeForm("hook", "Paul's mom");
+        kid.setForm(form);
         form->beSigned(dumb);
-        form->signForm(dumb);
+        dumb.signForm(*form);
         dumb.executeForm(*form);
     }
     catch (const std::exception &exc)

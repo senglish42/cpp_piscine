@@ -29,7 +29,7 @@ PresidentalPardonForm::PresidentalPardonForm(const PresidentalPardonForm & rhs)
     *this = rhs;
 }
 
-PresidentalPardonForm & PresidentalPardonForm::operator=(const PresidentalPardonForm & rhs)
+PresidentalPardonForm& PresidentalPardonForm::operator=(const PresidentalPardonForm & rhs)
 {
     Form::operator=(rhs);
     return *this;

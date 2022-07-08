@@ -18,7 +18,9 @@
 #include <exception>
 #include <sstream>
 #include <stdexcept>
+#include "Form.hpp"
 
+class Form;
 class Bureaucrat
 {
     public:
@@ -33,6 +35,7 @@ class Bureaucrat
         ~Bureaucrat();
         const std::string   &getName() const;
         int                 getValue() const;
+        void signForm(Form &form);
         class GradeTooHighException : public std::exception
         {
             public:

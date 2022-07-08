@@ -12,8 +12,6 @@
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
-#include <fstream>
-
 
 int main()
 {
@@ -22,12 +20,12 @@ int main()
         Bureaucrat bb("Vasiliy", 30);
         std::cout << bb.getName() << std::endl;
         std::cout << bb.getValue() << std::endl;
-        Form f("'Very important'", 60, 40);
+        Form f("'Very important'", 30, 20);
         std::cout << f.getName() << " " << f.getExecValue() << std::endl;
+        bb.signForm(f);
         std::cout << bb-- << std::endl;
         std::cout << bb << std::endl;
         f.beSigned(bb);
-        f.signForm(bb);
     }
     catch (const std::exception &exc)
     {
@@ -40,6 +38,15 @@ int main()
         borya = new Bureaucrat("Borya", 1);
         std::cout << borya->getName() << std::endl;
         std::cout << borya->getValue() << std::endl;
+        Form f("'To go for a lunch'", 149, 148);
+        Form m("'Talk to workmates'", 145, 144);
+        m = f;
+        Form l(f);
+        std::cout   << "....comparison check...." << std::endl;
+        std::cout   << f.getName() << " " << m.getName() << " "
+                    << l.getName() << std::endl;
+        std::cout   << f.getExecValue() << " " << m.getExecValue() << " "
+                    << l.getExecValue() << std::endl;
         std::cout << *borya << std::endl;
         Bureaucrat cc(*borya, "_temp");
         std::cout << cc++ << std::endl;

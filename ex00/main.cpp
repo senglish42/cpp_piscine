@@ -26,14 +26,20 @@ int main()
     }
     catch (const std::exception& exc)
     {
-        std::cout << exc.what() << ". Caught a runtime_error!" << std::endl;
+        std::cerr << exc.what() << ". Caught a runtime_error!" << std::endl;
     }
     Bureaucrat *borya;
     try
     {
         borya = new Bureaucrat("Borya", 1);
-        std::cout << borya->getName() << std::endl;
-        std::cout << borya->getValue() << std::endl;
+        Bureaucrat boris(*borya);
+        Bureaucrat boryushka("boryushka", 10);
+        boryushka = boris;
+        std::cout   << "....comparison check...." << std::endl;
+        std::cout   << borya->getName() << " " << boris.getName() << " "
+                    << boryushka.getName() << std::endl;
+        std::cout   << borya->getValue() << " " << boris.getValue() << " "
+                    << boryushka.getValue() << std::endl;
         std::cout << *borya << std::endl;
         Bureaucrat cc(*borya, "_temp");
         std::cout << cc++ << std::endl;
@@ -45,8 +51,7 @@ int main()
     {
         delete borya;
         borya = NULL;
-        std::cerr << exc.what() << ". Caught a runtime_error!" <<
-        std::endl;
+        std::cerr << exc.what() << ". Caught a runtime_error!" << std::endl;
     }
     return 0;
 }

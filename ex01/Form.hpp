@@ -19,19 +19,19 @@
 #include <stdexcept>
 #include "Bureaucrat.hpp"
 
+class Bureaucrat;
 class Form
 {
     public:
         Form(const std::string &name, const int &sign, const int &execute);
         Form(const Form &copy);
-        Form(const Form &copy, const std::string &name);
         Form &operator=(const Form &form);
         ~Form();
         const std::string   &getName() const;
+        bool                getStatus() const;
         int                 getExecValue() const;
         int                 getSignValue() const;
-        void                beSigned(Bureaucrat &name);
-        void                signForm(Bureaucrat &name) const;
+        void                beSigned(Bureaucrat& bureaucrat);
         class GradeTooHighException : public std::exception
         {
             public:

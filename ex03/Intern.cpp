@@ -12,20 +12,20 @@
 
 #include "Intern.hpp"
 
-Intern::Intern()
+Intern::Intern() : _form(NULL)
 {
-    keep_form = NULL;
     std::cout << "Hoooray! Here is an unknown intern to do some useless "
                  "bureaucrat's stuff." << std::endl;
 }
 
 Intern::~Intern()
 {
-    delete keep_form;
+    delete _form;
+    _form = NULL;
     std::cout << "Bye, intern. We will not miss you. Bureaucrats." << std::endl;
 }
 
-Intern::Intern(const Intern &copy)
+Intern::Intern(const Intern &copy) : _form(NULL)
 {
     std::cout << "Copy constructor called" << std::endl;
     *this = copy;
@@ -35,8 +35,12 @@ Intern &Intern::operator=(const Intern &intern)
 {
     if (this == &intern)
         return *this;
-    keep_form = intern.keep_form;
     return *this;
+}
+
+void Intern::setForm(Form* form)
+{
+    _form = form;
 }
 
 Form *Intern::makeForm(const std::string &form, const std::string

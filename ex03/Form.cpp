@@ -28,12 +28,12 @@ Form::~Form()
     std::cout << "Form destructor " << _name << " is called" << std::endl;
 }
 
-Form::Form(const Form &copy) : _name(copy._name), _status(copy._status), _sign
-(copy._sign), _execute(copy._execute)
-{
-    std::cout << "Copy constructor called" << std::endl;
-    *this = copy;
-}
+//Form::Form(const Form &copy) : _name(copy._name), _status(copy._status), _sign
+//(copy._sign), _execute(copy._execute)
+//{
+//    std::cout << "Copy constructor called" << std::endl;
+//    *this = copy;
+//}
 
 Form &Form::operator=(const Form &form)
 {
@@ -48,6 +48,11 @@ const std::string &Form::getName() const
     return this->_name;
 }
 
+bool Form::getStatus() const
+{
+    return this->_status;
+}
+
 int Form::getExecValue() const
 {
     return this->_execute;
@@ -58,23 +63,26 @@ int Form::getSignValue() const
     return this->_sign;
 }
 
-void Form::beSigned(const Bureaucrat &name)
-{
-    if (_sign >= name.getValue())
-        _status = true;
-}
 
-void Form::signForm(const Bureaucrat &name) const
+void Form::beSigned(Bureaucrat &bureaucrat)
 {
-    std::cout << "Bureaucrat " << name.getName();
-    if (_status)
-        std::cout << " signed " << _name << " form.";
-    else
+    std::stringstream ss;
+    ss << _sign;
+    int bvalue = bureaucrat.getValue();
+    std::stringstream bv;
+    bv << bvalue;
+    if (_sign >= bvalue)
     {
-        std::cout << " couldn't sign " << _name
-        << " form because his grade is not enough to make form be signed.";
+        _status = true;
+        std::cout << "Form " << _name << " can be signed." << std::endl;
+        return ;
     }
-    std::cout << std::endl;
+    if (_status && _sign < bvalue)
+        _status = false;
+    exc =   "Bureaucrat " + bureaucrat.getName() + "'s sign grade is: "
+            + bv.str() + ", but required grade is: " + ss.str()
+            + ". Thus, grade is too low.";
+    throw GradeTooLowException(exc.c_str());
 }
 
 std::ostream &operator<<(std::ostream &out, const Form &form)

@@ -43,7 +43,6 @@ _name(copy._name + name), _grade(copy._grade)
 //    std::cout << "Temporary bureaucrat " << _name << " is called." << std::endl;
 }
 
-
 const std::string &Bureaucrat::getName() const
 {
     return this->_name;
@@ -65,6 +64,7 @@ Bureaucrat& Bureaucrat::operator--()
 {
     ++this->_grade;
     checkException();
+
     return *this;
 }
 
@@ -104,6 +104,31 @@ void Bureaucrat::checkException() throw (GradeTooHighException, GradeTooLowExcep
         exc = "Bureaucrat " + _name + "'s grade is too high: " + ss.str();
         throw GradeTooHighException(exc.c_str());
     }
+}
+
+void Bureaucrat::signForm(Form &form)
+{
+    int sign = form.getSignValue();
+    if (_grade <= sign && !form.getStatus())
+    {
+        std::cout   << "Bureaucrat " << _name << " couldn't sign "
+                    << form.getName() << " form. He hasn't got a permission "
+                    << "yet." << std::endl
+                    << "Trying to get a permission.............." << std::endl;
+        form.beSigned(*this);
+    }
+    std::cout << "Bureaucrat " << _name;
+    if (_grade <= sign)
+        std::cout << " signed " << form.getName() << " form.";
+    else
+    {
+        std::cout   << " couldn't sign " << form.getName() << " form because his "
+                                                      "grade: "
+                    << _grade << ", but required grade to sign the form is: "
+                    << sign << ". Thus, bureaucrat's grade is too high to "
+                    << "sign the form.";
+    }
+    std::cout << std::endl;
 }
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat)

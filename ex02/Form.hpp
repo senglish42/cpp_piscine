@@ -25,15 +25,15 @@ class Form
     protected:
         Form();
         Form(const std::string &name, const int &sign, const int &execute);
-        Form(const Form &copy);
+//        Form(const Form &copy);
         Form &operator=(const Form &form);
         ~Form();
     public:
-        int         getExecValue() const;
-        int         getSignValue() const;
+        bool                getStatus() const;
+        int                 getExecValue() const;
+        int                 getSignValue() const;
         const std::string   &getName() const;
-        void                beSigned(const Bureaucrat &name);
-        void                signForm(const Bureaucrat &name) const;
+        void                beSigned(Bureaucrat& bureaucrat);
         class GradeTooHighException : public std::exception
         {
             public:

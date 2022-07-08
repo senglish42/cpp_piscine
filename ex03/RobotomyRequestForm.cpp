@@ -24,7 +24,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
     std::cout << "RobotomyRequestForm destructor is called" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm & rhs) :
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &rhs) :
 Form(rhs.getName(), 72, 45), _target(rhs.getTarget())
 {
     *this = rhs;

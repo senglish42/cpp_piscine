@@ -20,19 +20,21 @@
 
 enum string_code
 {
-    PRESIDENTAL,
     ROBOTOMY,
     SHRUBBERY,
+    PRESIDENTAL,
     OTHERS
 };
 
+class Form;
 class Intern
 {
     public:
         Intern();
         ~Intern();
         Intern(const Intern &copy);
-        Intern &operator=(const Intern &form);
+        Intern &operator=(const Intern &intern);
+        void setForm(Form* form);
         class UnknownForm : public std::exception
         {
             public:
@@ -41,10 +43,10 @@ class Intern
             private:
                 const char *_err;
         };
-        Form *keep_form;
         Form *makeForm(const std::string &form, const std::string &target)
         const throw (UnknownForm);
     private:
+        const Form *_form;
         static string_code checkit(const std::string& form);
 };
 
