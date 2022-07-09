@@ -45,6 +45,7 @@ int main()
     std::cout << third.size() << std::endl;
     try
     {
+        third[0] = 0;
         for (int i = 1; i < 13; ++i)
             third[i] = static_cast<float>(third[i - 1] + M_PI);
     }
@@ -57,8 +58,9 @@ int main()
     std::cout << fourth.size() << std::endl;
     try
     {
+        fourth[0] = 0;
         for (int i = 1; i < 13; ++i)
-            fourth[i] = fourth[i - 1] - M_PI;
+            fourth[i] = static_cast<double>(fourth[i - 1] + M_PI);
     }
     catch (std::exception& e)
     {
